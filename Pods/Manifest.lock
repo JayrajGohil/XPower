@@ -1,0 +1,25 @@
+PODS:
+  - Alamofire (4.3.0)
+  - AlamofireImage (3.2.0):
+    - Alamofire (~> 4.1)
+  - CryptoSwift (0.6.7)
+  - MBProgressHUD (1.0.0)
+  - SwiftyJSON (3.1.4)
+
+DEPENDENCIES:
+  - Alamofire
+  - AlamofireImage
+  - CryptoSwift
+  - MBProgressHUD
+  - SwiftyJSON
+
+SPEC CHECKSUMS:
+  Alamofire: 856a113053a7bc9cbe5d6367a555d773fc5cfef7
+  AlamofireImage: 157ed682cc81d3b9db4fb90c1f12180ac552d93b
+  CryptoSwift: 685ae257941e5447474348a2b545583e1a16b573
+  MBProgressHUD: 4890f671c94e8a0f3cf959aa731e9de2f036d71a
+  SwiftyJSON: c2842d878f95482ffceec5709abc3d05680c0220
+
+PODFILE CHECKSUM: 64238026aaf90df290405eb75d84cf00f5ed1075
+
+COCOAPODS: 1.1.1
