@@ -13,16 +13,19 @@ class SignUpViewController: UIViewController {
 
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var imgvBackground: UIImageView!
+    @IBOutlet weak var imgAvatar: UIImageView!
+    @IBOutlet weak var btnSchool: UIButton!
     @IBOutlet weak var txtUsername: UITextField!
     @IBOutlet weak var txtEmail: UITextField!
     @IBOutlet weak var txtPassword: UITextField!
     @IBOutlet weak var txtConfirmPassword: UITextField!
-    @IBOutlet weak var btnEmail: UIButton!
+    @IBOutlet weak var txtEmailHost: UITextField!
     @IBOutlet weak var btnSignup: UIButton!
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        self.btnSchool.titleLabel?.textAlignment = NSTextAlignment.center
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -39,15 +42,20 @@ class SignUpViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-
-    @IBAction func pressEmailBtn(_ sender: Any) {
+    @IBAction func tapAvatar(_ sender: UITapGestureRecognizer) {
         
-        let alertEmailHost = UIAlertController(title: "XPower", message: "Select Hostname", preferredStyle: .actionSheet)
-        let actionHavord = UIAlertAction(title: "@haverford.org", style: .default, handler: {(action) -> Void in
-            self.btnEmail.titleLabel?.text = "@haverford.org"
+    }
+    
+    @IBAction func pressSelectSchoolBtn(_ sender: Any) {
+        let alertEmailHost = UIAlertController(title: AppDefault.AppName, message: AppDefault.SelectSchool, preferredStyle: .actionSheet)
+        let actionHavord = UIAlertAction(title: School.HaverfordName, style: .default, handler: {(action) -> Void in
+            self.btnSchool.titleLabel?.text = School.HaverfordName
+            self.txtEmailHost.text = School.HaverfordEmail
+            
         })
-        let actionAgnes = UIAlertAction(title: "@agnesirwin.org", style: .default, handler: {action in
-            self.btnEmail.titleLabel?.text = "@agnesirwin.org"
+        let actionAgnes = UIAlertAction(title: School.AgnesIrwinName, style: .default, handler: {action in
+            self.btnSchool.titleLabel?.text = School.AgnesIrwinName
+            self.txtEmailHost.text = School.AgnesIrwinEmail
         })
         alertEmailHost.addAction(actionHavord)
         alertEmailHost.addAction(actionAgnes)
@@ -65,15 +73,36 @@ class SignUpViewController: UIViewController {
             return
         }
         
-        let strEmail = "\(txtEmail.text! + (btnEmail.titleLabel?.text)!)"
-        let strSchoolName = (btnEmail.titleLabel?.text == "@haverford.org") ? "Haverford" : "Agnes Irwin School"
+        let strEmail = "\(txtEmail.text! + (txtEmailHost.text)!)"
+        let strSchoolName = (btnSchool.titleLabel?.text == School.HaverfordName) ? School.HaverfordName : School.AgnesIrwinName
         MBProgressHUD.showAdded(to: self.view, animated: true)
-        WebServiceManager.signup(username: self.txtUsername.text!, password: self.txtPassword.text!, email: strEmail, schoolname: strSchoolName, avatar: false, avatarURl: "", completionHandler: {(isSuccess, responseData, error) -> () in
+        WebServiceManager.signup(username: self.txtUsername.text!, password: self.txtPassword.text!, email: strEmail, schoolname: strSchoolName, avatar: false, avatarURl: "", completionHandler: {(isSuccess, message) -> () in
             
             DispatchQueue.main.async {
                 
                 MBProgressHUD.hide(for: self.view, animated: true)
-                self.showAlert("XPower", message: error)
+                
+                if isSuccess {
+                    
+                    // Store password in Keychain
+                    let keyWrapper = KeychainWrapper()
+                    keyWrapper.mySetObject(self.txtPassword.text, forKey: kSecValueData)
+                    keyWrapper.mySetObject(self.txtUsername.text, forKey: kSecAttrAccount)
+                    keyWrapper.writeToKeychain()
+                    
+                    UserDefaults.standard.set(self.txtPassword.text, forKey: AppDefault.Username)
+                    UserDefaults.standard.set(strSchoolName, forKey: AppDefault.SchoolName)
+                    
+                    // check if keep me login on then store in userdefaults
+                    UserDefaults.standard.set(false, forKey: AppDefault.KeepLogIn)
+                    UserDefaults.standard.synchronize()
+                    
+                    // Load Home view
+                    CommonViewController.loadHomeView()
+                }
+                else {
+                    self.showAlert("XPower", message: message)
+                }
             }
         })
     }

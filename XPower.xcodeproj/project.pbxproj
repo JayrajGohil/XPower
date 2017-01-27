@@ -14,6 +14,7 @@
 		29423D321E37AB8E00CC86C0 /* WebServiceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29423D301E37AB8E00CC86C0 /* WebServiceManager.swift */; };
 		29423D331E37AB8E00CC86C0 /* WebServiceFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29423D311E37AB8E00CC86C0 /* WebServiceFactory.swift */; };
 		29423D351E37B38400CC86C0 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29423D341E37B38400CC86C0 /* Constants.swift */; };
+		295988661E3BAD91003AC823 /* LeftMenuHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 295988651E3BAD91003AC823 /* LeftMenuHeaderView.swift */; };
 		29A006A51E37F67D0055CFD3 /* LoginModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29A006A41E37F67D0055CFD3 /* LoginModel.swift */; };
 		29C037171E3A6F54003185B7 /* KeychainWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = 29C037161E3A6F54003185B7 /* KeychainWrapper.m */; };
 		29F574F71E36ADFA00626DFD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29F574F61E36ADFA00626DFD /* AppDelegate.swift */; };
@@ -59,6 +60,7 @@
 		29423D311E37AB8E00CC86C0 /* WebServiceFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebServiceFactory.swift; sourceTree = "<group>"; };
 		29423D341E37B38400CC86C0 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		29423D361E37BF3500CC86C0 /* Alamofire.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Alamofire.framework; path = "../../../../../../Library/Developer/Xcode/DerivedData/XPower-dxitaqgwnezccacdaeqrtecabjvr/Build/Products/Debug-iphonesimulator/Alamofire/Alamofire.framework"; sourceTree = "<group>"; };
+		295988651E3BAD91003AC823 /* LeftMenuHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LeftMenuHeaderView.swift; sourceTree = "<group>"; };
 		29A006A41E37F67D0055CFD3 /* LoginModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginModel.swift; sourceTree = "<group>"; };
 		29A006A61E37FB2D0055CFD3 /* XPower-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "XPower-Bridging-Header.h"; sourceTree = "<group>"; };
 		29C037151E3A6F54003185B7 /* KeychainWrapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KeychainWrapper.h; sourceTree = "<group>"; };
@@ -162,6 +164,7 @@
 				29F575331E36B79000626DFD /* SVMenuOptionManager.swift */,
 				29F575311E36B62800626DFD /* SVSlidingPanelViewController.swift */,
 				29423D2C1E37A26800CC86C0 /* LeftMenuTableViewCell.swift */,
+				295988651E3BAD91003AC823 /* LeftMenuHeaderView.swift */,
 				29F5752F1E36B4BE00626DFD /* LeftMenuTableViewController.swift */,
 				29A006A41E37F67D0055CFD3 /* LoginModel.swift */,
 				29A006A61E37FB2D0055CFD3 /* XPower-Bridging-Header.h */,
@@ -511,6 +514,7 @@
 				29F574F91E36ADFA00626DFD /* LoginViewController.swift in Sources */,
 				293E91201E3A5024008323D1 /* String+AES.swift in Sources */,
 				29F574FF1E36ADFA00626DFD /* XPower.xcdatamodeld in Sources */,
+				295988661E3BAD91003AC823 /* LeftMenuHeaderView.swift in Sources */,
 				29F574F71E36ADFA00626DFD /* AppDelegate.swift in Sources */,
 				29C037171E3A6F54003185B7 /* KeychainWrapper.m in Sources */,
 				29423D351E37B38400CC86C0 /* Constants.swift in Sources */,

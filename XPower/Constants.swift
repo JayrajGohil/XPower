@@ -8,13 +8,48 @@
 
 import UIKit
 
-struct Constants {
+struct AppDefault {
+    static let AppName = "XPower"
+    static let SelectSchool = "Select School"
+    static let KeepLogIn = "keepLogIn"
+    static let Username = "Username"
+    static let SchoolName = "SchoolName"
+}
+
+struct Menu {
+    static let Home = "Home"
+    static let Points = "Points"
+    static let Score = "Score"
+    static let Friends = "Friends"
+    static let Settings = "Settings"
+    static let Logout = "Logout"
+}
+
+struct API {
+    static let UrlHost = "http://www.consoaring.com"
+    static let UrlLogin = "/UserService.svc/userauthentication"
+    static let UrlForgotPassword = "/UserService.svc/resetpassword"
+    static let UrlSignup = "/UserService.svc/CreateUserAccount"
     
-    static let urlHost = "http://www.consoaring.com"
-    static let urlLogin = "/UserService.svc/userauthentication"
-    static let urlForgotPassword = "/UserService.svc/resetpassword"
-    static let urlSignup = "/UserService.svc/CreateUserAccount"
+    static let UrlDailyPoint = "/PointService.svc/dailypoints"
+    static let UrlTotalSchoolPoint = "/PointService.svc/totalschoolpoints"
+    static let UrlPointList = "/PointService.svc/pointslistarray"
+    static let UrlPointTable = "/PointService.svc/pointstable"
+}
+
+struct SecureKey {
+    static let Key = "secret0key000000"
+    static let Iv = "0000000000000000"
+}
+
+struct School {
+    static let HaverfordName = "Haverford"
+    static let AgnesIrwinName = "Agnes Irwin"
     
-    static let key = "secret0key000000"
-    static let iv = "0000000000000000"
+    static let HaverfordEmail = "@haverford.org"
+    static let AgnesIrwinEmail = "@agnesirwin.org"
+}
+
+struct SignUp {
+    static let Success = "Created User Account for user"
 }

@@ -11,7 +11,8 @@ import UIKit
 class LeftMenuTableViewController: UITableViewController {
 
     var menuSelectionClosure: ((IndexPath, Bool)-> Void)!
-
+    var arrayMenu = [Menu.Home, Menu.Points, Menu.Score, Menu.Friends, Menu.Settings, Menu.Logout]
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -30,6 +31,27 @@ class LeftMenuTableViewController: UITableViewController {
 
     // MARK: - Table view data source
 
+    override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 108
+    }
+    
+    override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let headerView: LeftMenuHeaderView = tableView.dequeueReusableCell(withIdentifier: "LeftMenuHeaderView") as! LeftMenuHeaderView
+        let keychain = KeychainWrapper()
+        let username = keychain.myObject(forKey: kSecAttrAccount) as! String
+        headerView.lblUsername.text = username
+        
+        return headerView
+        /*
+        static NSString *headerIdentifier = @"HeaderIdentifier";
+        UITableViewCell *headerView = [tableView dequeueReusableCellWithIdentifier:headerIdentifier];
+        [headerView.textLabel setFont:kFontHelveticaNeue];
+        headerView.textLabel.text = [NSString stringWithFormat:NSLocalizedString(@"SectionHeaderText", @""),self.sbAcronym.text];
+        
+        return headerView;
+         */
+    }
+    
     override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
         return 1
@@ -38,7 +60,7 @@ class LeftMenuTableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return 3
+        return arrayMenu.count
     }
 
     
@@ -47,7 +69,7 @@ class LeftMenuTableViewController: UITableViewController {
 
         // Configure the cell...
 
-        cell.lblTitle.text = "Hello"
+        cell.lblTitle.text = arrayMenu[indexPath.row]
         return cell
     }
 

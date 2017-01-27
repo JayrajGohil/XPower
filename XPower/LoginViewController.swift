@@ -19,6 +19,16 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+        
+        let keychain = KeychainWrapper()
+        let username = keychain.myObject(forKey: kSecAttrAccount) as? String
+        if let user = username, user.characters.count > 0{
+            let isKeepLogIn = UserDefaults.standard.bool(forKey: AppDefault.KeepLogIn)
+            if isKeepLogIn {
+                // Load Home view
+                CommonViewController.loadHomeView()
+            }
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -48,9 +58,12 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
                     keyWrapper.mySetObject(dictData.username, forKey: kSecAttrAccount)
                     keyWrapper.writeToKeychain()
                     
+                    UserDefaults.standard.set(dictData.username, forKey: AppDefault.Username)
+                    UserDefaults.standard.set(dictData.schoolName, forKey: AppDefault.SchoolName)
+                    
                     // check if keep me login on then store in userdefaults
                     if self.switchKeepLogin.isOn {
-                        UserDefaults.standard.set(true, forKey: "keepLogIn")
+                        UserDefaults.standard.set(true, forKey: AppDefault.KeepLogIn)
                         UserDefaults.standard.synchronize()
                     }
                     

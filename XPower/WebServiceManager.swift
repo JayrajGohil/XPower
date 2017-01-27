@@ -14,7 +14,7 @@ class WebServiceManager: NSObject {
     
     class func loginUser(username: String, password: String,completionHandler:@escaping (Bool, LoginModel, String)->()) {
         
-        let url = Constants.urlHost+Constants.urlLogin
+        let url = API.UrlHost+API.UrlLogin
         let param = ["Username":username, "Password":password]
         
         self.fetchData(fromURL: url, parameter: param as [String : AnyObject], completionHandler: { (isSuccess, responseData, error) in
@@ -24,7 +24,7 @@ class WebServiceManager: NSObject {
                 
                 let jsonData = responseData as! NSDictionary
                 
-                if jsonData["username"] != nil {
+                if jsonData["Username"] != nil {
                     // now val is not nil and the Optional has been unwrapped, so use it
                     loginModel = LoginModel(fromDictionary: jsonData)
                     completionHandler(true,  loginModel, "")
@@ -41,7 +41,7 @@ class WebServiceManager: NSObject {
     
     class func forgotPassword(email: String,completionHandler:@escaping (Bool, String)->()) {
         
-        let url = Constants.urlHost+Constants.urlForgotPassword
+        let url = API.UrlHost+API.UrlForgotPassword
         let param = ["Email":email,]
         
         self.fetchData(fromURL: url, parameter: param as [String : AnyObject], completionHandler: { (isSuccess, responseData, error) in
@@ -62,9 +62,9 @@ class WebServiceManager: NSObject {
         })
     }
     
-    class func signup(username:String, password:String, email: String, schoolname:String, avatar: Bool, avatarURl:String, completionHandler:@escaping(Bool, AnyObject, String)->()) {
+    class func signup(username:String, password:String, email: String, schoolname:String, avatar: Bool, avatarURl:String, completionHandler:@escaping(Bool, String)->()) {
         
-        let url = Constants.urlHost+Constants.urlSignup
+        let url = API.UrlHost+API.UrlSignup
         let params = ["Password":password,
                       "Username":username,
                       "Email":email,
@@ -75,16 +75,58 @@ class WebServiceManager: NSObject {
         self.fetchData(fromURL: url, parameter: params as [String : AnyObject], completionHandler: {(isSuccess, responseData, error) -> () in
             if isSuccess {
                 let jsonData = responseData as! NSDictionary
-                print(jsonData)
-                completionHandler(true, jsonData, "")
+                let result = jsonData["Result"] as! String
+                if result.lowercased().range(of: SignUp.Success) != nil {
+                    completionHandler(true, result)
+                }
+                else {
+                    completionHandler(false, result)
+                }
             }
             else {
-                completionHandler(false, "" as AnyObject, error)
+                completionHandler(false, error)
             }
         })
     }
     
+    class func dailyPoints(username:String, completionHandler:@escaping(Bool, String)->()) {
+        
+        let url = API.UrlHost+API.UrlDailyPoint
+        let params = ["Username":username]
+        
+        self.fetchData(fromURL: url, parameter: params as [String : AnyObject], completionHandler: {(isSuccess, responseData, error) -> () in
+            if isSuccess {
+                let jsonData = responseData as! NSDictionary
+                let result = "\(jsonData["error"]!)"
+                if NSInteger(result) == 0 {
+                    completionHandler(true, result)
+                }
+                else {
+                    completionHandler(false, result)
+                }
+            }
+            else {
+                completionHandler(false, error)
+            }
+        })
+    }
     
+    class func totalSchoolPoints(schoolName:String, completionHandler:@escaping(Bool, String)->()) {
+        
+        let url = API.UrlHost+API.UrlTotalSchoolPoint
+        let params = ["SchoolName":schoolName]
+        
+        self.fetchData(fromURL: url, parameter: params as [String : AnyObject], completionHandler: {(isSuccess, responseData, error) -> () in
+            if isSuccess {
+                let jsonData = responseData as! NSDictionary
+                let result = "\(jsonData["totalpoints"]!)"
+                completionHandler(true, result)
+            }
+            else {
+                completionHandler(false, error)
+            }
+        })
+    }
     
     
     class func fetchData(fromURL url:String, parameter param:[String:AnyObject], completionHandler:@escaping (Bool, AnyObject, String)->()) {
