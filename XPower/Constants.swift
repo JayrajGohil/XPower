@@ -35,6 +35,7 @@ struct API {
     static let UrlTotalSchoolPoint = "/PointService.svc/totalschoolpoints"
     static let UrlPointList = "/PointService.svc/pointslistarray"
     static let UrlPointTable = "/PointService.svc/pointstable"
+    static let UrlPointFavorite = "/PointService.svc/getfavorites"
 }
 
 struct SecureKey {
@@ -45,6 +46,8 @@ struct SecureKey {
 struct School {
     static let HaverfordName = "Haverford"
     static let AgnesIrwinName = "Agnes Irwin"
+    
+    static let Param_AgnesIrwinSchool = "Agnes Irwin School"
     
     static let HaverfordEmail = "@haverford.org"
     static let AgnesIrwinEmail = "@agnesirwin.org"

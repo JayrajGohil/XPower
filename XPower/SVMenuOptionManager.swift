@@ -62,14 +62,43 @@ class SVMenuOptionManager: NSObject {
     }
     
     func showScreenForMenuOption(selectedIndex: IndexPath, animation animated: Bool) {
+        
+        let mainStoryboard = UIStoryboard(name: "Main", bundle: nil)
+        let navigationController = self.slidingPanel.centerPanel as! UINavigationController
+        
         print("press: \(selectedIndex.row)")
-        if selectedIndex.row == 2 {
+        switch selectedIndex.row {
+        case 0:
+            // Home
+            let homeVC: HomeViewController = mainStoryboard.instantiateViewController(withIdentifier: "HomeViewController") as! HomeViewController
+            navigationController.viewControllers = [homeVC]
+            break
+        case 1:
+            // Points
+            let pointsVC: PointsTabbarViewController = mainStoryboard.instantiateViewController(withIdentifier: "PointsTabbarViewController") as! PointsTabbarViewController
+            navigationController.viewControllers = [pointsVC]
+            break
+        case 2:
+            // Score
+            let scoreVC: ScoreViewController = mainStoryboard.instantiateViewController(withIdentifier: "ScoreViewController") as! ScoreViewController
+            navigationController.viewControllers = [scoreVC]
+            break
+        case 3:
+            // Friends
+            break
+        case 4:
+            // Settings
+            break
+        case 5:
+            // Logout
             let keyWrapper = KeychainWrapper()
             keyWrapper.mySetObject("", forKey: kSecValueData)
             keyWrapper.mySetObject("", forKey: kSecAttrAccount)
             keyWrapper.writeToKeychain()
             CommonViewController.loadLoginVieww()
-            return
+            break
+        default:
+            break
         }
         self.slidingPanel.showCenterPanel(animated: animated)
     }

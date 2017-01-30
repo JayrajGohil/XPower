@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import MBProgressHUD
 
 class HomeViewController: UIViewController {
 
@@ -22,6 +23,7 @@ class HomeViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
+        MBProgressHUD.showAdded(to: self.view, animated: true)
         let username = UserDefaults.standard.object(forKey: AppDefault.Username) as! String
         let schoolname = UserDefaults.standard.object(forKey: AppDefault.SchoolName) as! String
 
@@ -47,6 +49,7 @@ class HomeViewController: UIViewController {
                     print("total point")
                     if isSuccess{
                         self.lblTotalSchoolPoint.text = message
+                        MBProgressHUD.hide(for: self.view, animated: true)
                     }
                 }
                 

@@ -17,7 +17,7 @@ class WebServiceManager: NSObject {
         let url = API.UrlHost+API.UrlLogin
         let param = ["Username":username, "Password":password]
         
-        self.fetchData(fromURL: url, parameter: param as [String : AnyObject], completionHandler: { (isSuccess, responseData, error) in
+        self.fetchData(withPOST: url, parameter: param as [String : AnyObject], completionHandler: { (isSuccess, responseData, error) in
             
             var loginModel = LoginModel(fromDictionary: NSDictionary())
             if isSuccess {
@@ -44,7 +44,7 @@ class WebServiceManager: NSObject {
         let url = API.UrlHost+API.UrlForgotPassword
         let param = ["Email":email,]
         
-        self.fetchData(fromURL: url, parameter: param as [String : AnyObject], completionHandler: { (isSuccess, responseData, error) in
+        self.fetchData(withPOST: url, parameter: param as [String : AnyObject], completionHandler: { (isSuccess, responseData, error) in
             
             if isSuccess {
                 let jsonData = responseData as! NSDictionary
@@ -72,11 +72,11 @@ class WebServiceManager: NSObject {
                       "Avatar":avatar ? "true" : "false",
                       "Avatarimageurl":avatarURl]
         
-        self.fetchData(fromURL: url, parameter: params as [String : AnyObject], completionHandler: {(isSuccess, responseData, error) -> () in
+        self.fetchData(withPOST: url, parameter: params as [String : AnyObject], completionHandler: {(isSuccess, responseData, error) -> () in
             if isSuccess {
                 let jsonData = responseData as! NSDictionary
                 let result = jsonData["Result"] as! String
-                if result.lowercased().range(of: SignUp.Success) != nil {
+                if result.lowercased().range(of: SignUp.Success.lowercased()) != nil {
                     completionHandler(true, result)
                 }
                 else {
@@ -94,15 +94,15 @@ class WebServiceManager: NSObject {
         let url = API.UrlHost+API.UrlDailyPoint
         let params = ["Username":username]
         
-        self.fetchData(fromURL: url, parameter: params as [String : AnyObject], completionHandler: {(isSuccess, responseData, error) -> () in
+        self.fetchData(withPOST: url, parameter: params as [String : AnyObject], completionHandler: {(isSuccess, responseData, error) -> () in
             if isSuccess {
-                let jsonData = responseData as! NSDictionary
-                let result = "\(jsonData["error"]!)"
-                if NSInteger(result) == 0 {
-                    completionHandler(true, result)
+                let jsonData = responseData as! [String:Int]
+                
+                if let result = jsonData["error"], result == 0 {
+                        completionHandler(true, "\(result)")
                 }
                 else {
-                    completionHandler(false, result)
+                    completionHandler(false, error)
                 }
             }
             else {
@@ -116,11 +116,15 @@ class WebServiceManager: NSObject {
         let url = API.UrlHost+API.UrlTotalSchoolPoint
         let params = ["SchoolName":schoolName]
         
-        self.fetchData(fromURL: url, parameter: params as [String : AnyObject], completionHandler: {(isSuccess, responseData, error) -> () in
+        self.fetchData(withPOST: url, parameter: params as [String : AnyObject], completionHandler: {(isSuccess, responseData, error) -> () in
             if isSuccess {
-                let jsonData = responseData as! NSDictionary
-                let result = "\(jsonData["totalpoints"]!)"
-                completionHandler(true, result)
+                let jsonData = responseData as! [String:Int]
+                if let result = jsonData["totalpoints"] {
+                    completionHandler(true, "\(result)")
+                }
+                else {
+                    completionHandler(false, error)
+                }
             }
             else {
                 completionHandler(false, error)
@@ -128,13 +132,72 @@ class WebServiceManager: NSObject {
         })
     }
     
+    class func pointListTable(completionHandler:@escaping(Bool, [PointTable], String)->()) {
+        let url = API.UrlHost+API.UrlPointTable
+        self.fetchData(withGET: url, completionHandler: {(isSuccess, responseData, error) -> () in
+            
+            var arrayPoint = [AnyObject]()
+            if isSuccess {
+                let jsonData = responseData  as! [AnyObject]
+                
+                for model in jsonData {
+                    let pModel = PointTable(fromDictionary: model as! NSDictionary)
+                    arrayPoint.append(pModel)
+                }
+                completionHandler(true, arrayPoint as! [PointTable], "")
+            }
+            else {
+                completionHandler(false, arrayPoint as! [PointTable], error)
+            }
+        })
+    }
     
-    class func fetchData(fromURL url:String, parameter param:[String:AnyObject], completionHandler:@escaping (Bool, AnyObject, String)->()) {
+    class func pointFavorite(username:String, completionHandler:@escaping(Bool, [FavoriteModel], String)->()) {
+        
+        let url = API.UrlHost+API.UrlPointFavorite
+        let params = ["Username":username]
+        
+        self.fetchData(withPOST: url, parameter: params as [String : AnyObject], completionHandler: {(isSuccess, responseData, error) -> () in
+            
+            var arrayPoint = [AnyObject]()
+            if isSuccess {
+                let jsonData = responseData  as! [AnyObject]
+                
+                for model in jsonData {
+                    let fModel = FavoriteModel(fromDictionary: model as! NSDictionary)
+                    arrayPoint.append(fModel)
+                }
+                completionHandler(true, arrayPoint as! [FavoriteModel], "")
+            }
+            else {
+                completionHandler(false, arrayPoint as! [FavoriteModel], error)
+            }
+        })
+    }
+    
+    class func fetchData(withPOST url:String, parameter param:[String:AnyObject], completionHandler:@escaping (Bool, AnyObject, String)->()) {
         
         var header: HTTPHeaders = ["Content-Type":"application/json"]
         header["Accept"] = "application/json"
         
         Alamofire.request(url, method: .post, parameters: param, encoding: JSONEncoding.default, headers: header)
+            .responseJSON { response in
+                
+                if (response.result.value != nil) {
+                    completionHandler(true,  response.result.value as AnyObject, "")
+                }
+                else{
+                    completionHandler(false, "" as AnyObject, (response.error?.localizedDescription)!)
+                }
+        }
+    }
+    
+    class func fetchData(withGET url:String, completionHandler:@escaping (Bool, AnyObject, String)->()) {
+        
+        var header: HTTPHeaders = ["Content-Type":"application/json"]
+        header["Accept"] = "application/json"
+        
+        Alamofire.request(url, method: .get, parameters: nil, encoding: JSONEncoding.default, headers: header)
             .responseJSON { response in
                 
                 if (response.result.value != nil) {

@@ -14,7 +14,16 @@
 		29423D321E37AB8E00CC86C0 /* WebServiceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29423D301E37AB8E00CC86C0 /* WebServiceManager.swift */; };
 		29423D331E37AB8E00CC86C0 /* WebServiceFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29423D311E37AB8E00CC86C0 /* WebServiceFactory.swift */; };
 		29423D351E37B38400CC86C0 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29423D341E37B38400CC86C0 /* Constants.swift */; };
+		295324D61E3FAA57006B3582 /* PointViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 295324D51E3FAA57006B3582 /* PointViewController.swift */; };
+		295324D81E3FAA64006B3582 /* FavoriteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 295324D71E3FAA64006B3582 /* FavoriteViewController.swift */; };
+		295324DA1E3FAA6C006B3582 /* RecentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 295324D91E3FAA6C006B3582 /* RecentViewController.swift */; };
+		295324DD1E3FAC3C006B3582 /* PointTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 295324DB1E3FAC3C006B3582 /* PointTableViewCell.swift */; };
+		295324DE1E3FAC3C006B3582 /* PointTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 295324DC1E3FAC3C006B3582 /* PointTableViewCell.xib */; };
+		295324E01E3FE5F5006B3582 /* PointTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 295324DF1E3FE5F5006B3582 /* PointTable.swift */; };
+		295324E21E3FF3BE006B3582 /* FavoriteModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 295324E11E3FF3BE006B3582 /* FavoriteModel.swift */; };
 		295988661E3BAD91003AC823 /* LeftMenuHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 295988651E3BAD91003AC823 /* LeftMenuHeaderView.swift */; };
+		295B03B31E3F8DFF00A86BBD /* ScoreViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 295B03B21E3F8DFF00A86BBD /* ScoreViewController.swift */; };
+		295B03B51E3FA10200A86BBD /* PointsTabbarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 295B03B41E3FA10200A86BBD /* PointsTabbarViewController.swift */; };
 		29A006A51E37F67D0055CFD3 /* LoginModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29A006A41E37F67D0055CFD3 /* LoginModel.swift */; };
 		29C037171E3A6F54003185B7 /* KeychainWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = 29C037161E3A6F54003185B7 /* KeychainWrapper.m */; };
 		29F574F71E36ADFA00626DFD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29F574F61E36ADFA00626DFD /* AppDelegate.swift */; };
@@ -60,7 +69,16 @@
 		29423D311E37AB8E00CC86C0 /* WebServiceFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebServiceFactory.swift; sourceTree = "<group>"; };
 		29423D341E37B38400CC86C0 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		29423D361E37BF3500CC86C0 /* Alamofire.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Alamofire.framework; path = "../../../../../../Library/Developer/Xcode/DerivedData/XPower-dxitaqgwnezccacdaeqrtecabjvr/Build/Products/Debug-iphonesimulator/Alamofire/Alamofire.framework"; sourceTree = "<group>"; };
+		295324D51E3FAA57006B3582 /* PointViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PointViewController.swift; sourceTree = "<group>"; };
+		295324D71E3FAA64006B3582 /* FavoriteViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FavoriteViewController.swift; sourceTree = "<group>"; };
+		295324D91E3FAA6C006B3582 /* RecentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecentViewController.swift; sourceTree = "<group>"; };
+		295324DB1E3FAC3C006B3582 /* PointTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PointTableViewCell.swift; sourceTree = "<group>"; };
+		295324DC1E3FAC3C006B3582 /* PointTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PointTableViewCell.xib; sourceTree = "<group>"; };
+		295324DF1E3FE5F5006B3582 /* PointTable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PointTable.swift; sourceTree = "<group>"; };
+		295324E11E3FF3BE006B3582 /* FavoriteModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FavoriteModel.swift; sourceTree = "<group>"; };
 		295988651E3BAD91003AC823 /* LeftMenuHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LeftMenuHeaderView.swift; sourceTree = "<group>"; };
+		295B03B21E3F8DFF00A86BBD /* ScoreViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScoreViewController.swift; sourceTree = "<group>"; };
+		295B03B41E3FA10200A86BBD /* PointsTabbarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PointsTabbarViewController.swift; sourceTree = "<group>"; };
 		29A006A41E37F67D0055CFD3 /* LoginModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginModel.swift; sourceTree = "<group>"; };
 		29A006A61E37FB2D0055CFD3 /* XPower-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "XPower-Bridging-Header.h"; sourceTree = "<group>"; };
 		29C037151E3A6F54003185B7 /* KeychainWrapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KeychainWrapper.h; sourceTree = "<group>"; };
@@ -154,6 +172,7 @@
 				29F5752B1E36AF9200626DFD /* SignUpViewController.swift */,
 				29F574FA1E36ADFA00626DFD /* Main.storyboard */,
 				29F575291E36AE2300626DFD /* HomeViewController.swift */,
+				295B03B21E3F8DFF00A86BBD /* ScoreViewController.swift */,
 				29423D2E1E37A79D00CC86C0 /* CommonViewController.swift */,
 				29423D301E37AB8E00CC86C0 /* WebServiceManager.swift */,
 				29423D311E37AB8E00CC86C0 /* WebServiceFactory.swift */,
@@ -167,11 +186,19 @@
 				295988651E3BAD91003AC823 /* LeftMenuHeaderView.swift */,
 				29F5752F1E36B4BE00626DFD /* LeftMenuTableViewController.swift */,
 				29A006A41E37F67D0055CFD3 /* LoginModel.swift */,
+				295324DF1E3FE5F5006B3582 /* PointTable.swift */,
+				295324E11E3FF3BE006B3582 /* FavoriteModel.swift */,
 				29A006A61E37FB2D0055CFD3 /* XPower-Bridging-Header.h */,
 				293E911F1E3A5024008323D1 /* String+AES.swift */,
 				29C037151E3A6F54003185B7 /* KeychainWrapper.h */,
 				29C037161E3A6F54003185B7 /* KeychainWrapper.m */,
 				29423D341E37B38400CC86C0 /* Constants.swift */,
+				295B03B41E3FA10200A86BBD /* PointsTabbarViewController.swift */,
+				295324D51E3FAA57006B3582 /* PointViewController.swift */,
+				295324D71E3FAA64006B3582 /* FavoriteViewController.swift */,
+				295324D91E3FAA6C006B3582 /* RecentViewController.swift */,
+				295324DB1E3FAC3C006B3582 /* PointTableViewCell.swift */,
+				295324DC1E3FAC3C006B3582 /* PointTableViewCell.xib */,
 			);
 			path = XPower;
 			sourceTree = "<group>";
@@ -341,6 +368,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				295324DE1E3FAC3C006B3582 /* PointTableViewCell.xib in Resources */,
 				29F575041E36ADFA00626DFD /* LaunchScreen.storyboard in Resources */,
 				29F575011E36ADFA00626DFD /* Assets.xcassets in Resources */,
 				29F574FC1E36ADFA00626DFD /* Main.storyboard in Resources */,
@@ -506,23 +534,31 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				295324E21E3FF3BE006B3582 /* FavoriteModel.swift in Sources */,
 				29423D321E37AB8E00CC86C0 /* WebServiceManager.swift in Sources */,
 				29F575321E36B62800626DFD /* SVSlidingPanelViewController.swift in Sources */,
 				29F5752C1E36AF9200626DFD /* SignUpViewController.swift in Sources */,
 				29F5752A1E36AE2300626DFD /* HomeViewController.swift in Sources */,
+				295324E01E3FE5F5006B3582 /* PointTable.swift in Sources */,
 				29A006A51E37F67D0055CFD3 /* LoginModel.swift in Sources */,
+				295324D61E3FAA57006B3582 /* PointViewController.swift in Sources */,
 				29F574F91E36ADFA00626DFD /* LoginViewController.swift in Sources */,
 				293E91201E3A5024008323D1 /* String+AES.swift in Sources */,
 				29F574FF1E36ADFA00626DFD /* XPower.xcdatamodeld in Sources */,
 				295988661E3BAD91003AC823 /* LeftMenuHeaderView.swift in Sources */,
+				295324D81E3FAA64006B3582 /* FavoriteViewController.swift in Sources */,
 				29F574F71E36ADFA00626DFD /* AppDelegate.swift in Sources */,
 				29C037171E3A6F54003185B7 /* KeychainWrapper.m in Sources */,
+				295324DA1E3FAA6C006B3582 /* RecentViewController.swift in Sources */,
+				295324DD1E3FAC3C006B3582 /* PointTableViewCell.swift in Sources */,
 				29423D351E37B38400CC86C0 /* Constants.swift in Sources */,
 				29F575341E36B79000626DFD /* SVMenuOptionManager.swift in Sources */,
 				29423D331E37AB8E00CC86C0 /* WebServiceFactory.swift in Sources */,
 				29423D2F1E37A79D00CC86C0 /* CommonViewController.swift in Sources */,
 				29F575301E36B4BE00626DFD /* LeftMenuTableViewController.swift in Sources */,
 				29423D2D1E37A26800CC86C0 /* LeftMenuTableViewCell.swift in Sources */,
+				295B03B51E3FA10200A86BBD /* PointsTabbarViewController.swift in Sources */,
+				295B03B31E3F8DFF00A86BBD /* ScoreViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -74,7 +74,7 @@ class SignUpViewController: UIViewController {
         }
         
         let strEmail = "\(txtEmail.text! + (txtEmailHost.text)!)"
-        let strSchoolName = (btnSchool.titleLabel?.text == School.HaverfordName) ? School.HaverfordName : School.AgnesIrwinName
+        let strSchoolName = (btnSchool.titleLabel?.text == School.HaverfordName) ? School.HaverfordName : School.Param_AgnesIrwinSchool.lowercased()
         MBProgressHUD.showAdded(to: self.view, animated: true)
         WebServiceManager.signup(username: self.txtUsername.text!, password: self.txtPassword.text!, email: strEmail, schoolname: strSchoolName, avatar: false, avatarURl: "", completionHandler: {(isSuccess, message) -> () in
             
