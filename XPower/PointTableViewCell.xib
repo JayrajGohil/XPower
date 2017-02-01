@@ -46,6 +46,7 @@
             </tableViewCellContentView>
             <connections>
                 <outlet property="btnAdd" destination="qeL-TO-aWg" id="Qw2-wN-MdW"/>
+                <outlet property="constraint_BtnWidth" destination="usn-vd-gfv" id="htd-rh-1y7"/>
                 <outlet property="lblTitle" destination="nBR-lY-to0" id="3d7-oC-wGX"/>
             </connections>
         </tableViewCell>

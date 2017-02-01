@@ -36,6 +36,8 @@ struct API {
     static let UrlPointList = "/PointService.svc/pointslistarray"
     static let UrlPointTable = "/PointService.svc/pointstable"
     static let UrlPointFavorite = "/PointService.svc/getfavorites"
+    static let UrlPointRecentDeed = "/PointService.svc/getrecentdeeds"
+    static let UrlPointAddDeed = "/PointService.svc/adddeeds"
 }
 
 struct SecureKey {

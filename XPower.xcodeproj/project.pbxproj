@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		2616979A750EDD0617AAD0AC /* Pods_XPower.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D440954B19A9A41694474B1A /* Pods_XPower.framework */; };
+		292637931E40EAE000028C99 /* RecentDeedModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 292637921E40EAE000028C99 /* RecentDeedModel.swift */; };
 		293E91201E3A5024008323D1 /* String+AES.swift in Sources */ = {isa = PBXBuildFile; fileRef = 293E911F1E3A5024008323D1 /* String+AES.swift */; };
 		29423D2D1E37A26800CC86C0 /* LeftMenuTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29423D2C1E37A26800CC86C0 /* LeftMenuTableViewCell.swift */; };
 		29423D2F1E37A79D00CC86C0 /* CommonViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29423D2E1E37A79D00CC86C0 /* CommonViewController.swift */; };
@@ -62,6 +63,7 @@
 
 /* Begin PBXFileReference section */
 		170BD0B3BC9FABE0F42FDDDE /* Pods-XPowerTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-XPowerTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-XPowerTests/Pods-XPowerTests.release.xcconfig"; sourceTree = "<group>"; };
+		292637921E40EAE000028C99 /* RecentDeedModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecentDeedModel.swift; sourceTree = "<group>"; };
 		293E911F1E3A5024008323D1 /* String+AES.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+AES.swift"; sourceTree = "<group>"; };
 		29423D2C1E37A26800CC86C0 /* LeftMenuTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LeftMenuTableViewCell.swift; sourceTree = "<group>"; };
 		29423D2E1E37A79D00CC86C0 /* CommonViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommonViewController.swift; sourceTree = "<group>"; };
@@ -188,6 +190,7 @@
 				29A006A41E37F67D0055CFD3 /* LoginModel.swift */,
 				295324DF1E3FE5F5006B3582 /* PointTable.swift */,
 				295324E11E3FF3BE006B3582 /* FavoriteModel.swift */,
+				292637921E40EAE000028C99 /* RecentDeedModel.swift */,
 				29A006A61E37FB2D0055CFD3 /* XPower-Bridging-Header.h */,
 				293E911F1E3A5024008323D1 /* String+AES.swift */,
 				29C037151E3A6F54003185B7 /* KeychainWrapper.h */,
@@ -554,6 +557,7 @@
 				29423D351E37B38400CC86C0 /* Constants.swift in Sources */,
 				29F575341E36B79000626DFD /* SVMenuOptionManager.swift in Sources */,
 				29423D331E37AB8E00CC86C0 /* WebServiceFactory.swift in Sources */,
+				292637931E40EAE000028C99 /* RecentDeedModel.swift in Sources */,
 				29423D2F1E37A79D00CC86C0 /* CommonViewController.swift in Sources */,
 				29F575301E36B4BE00626DFD /* LeftMenuTableViewController.swift in Sources */,
 				29423D2D1E37A26800CC86C0 /* LeftMenuTableViewCell.swift in Sources */,

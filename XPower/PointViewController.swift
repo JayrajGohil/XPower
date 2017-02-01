@@ -9,13 +9,16 @@
 import UIKit
 import MBProgressHUD
 
-class PointViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class PointViewController: UIViewController, UITableViewDelegate, UITableViewDataSource,PointTableCellDelegate {
 
     @IBOutlet weak var segmentPoints: UISegmentedControl!
     @IBOutlet weak var tblPoint: UITableView!
     @IBOutlet weak var btnDate: UIButton!
+    @IBOutlet weak var constraint_btnHeight: NSLayoutConstraint!
     
     var arrayPoint = [PointTable]()
+    var arrayRecent = [RecentDeedModel]()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -25,6 +28,9 @@ class PointViewController: UIViewController, UITableViewDelegate, UITableViewDat
         self.tblPoint.estimatedRowHeight = 60
         
         self.segmentPoints.selectedSegmentIndex = 0;
+        self.constraint_btnHeight.constant = 0;
+        self.btnDate.isHidden = true
+        
         loadPoints()
     }
 
@@ -35,9 +41,13 @@ class PointViewController: UIViewController, UITableViewDelegate, UITableViewDat
     
     @IBAction func segmentValueChange(_ sender: Any) {
         if self.segmentPoints.selectedSegmentIndex == 0 {
+            self.constraint_btnHeight.constant = 0;
+            self.btnDate.isHidden = true
             loadPoints()
         }
         else {
+            self.btnDate.isHidden = false
+            self.constraint_btnHeight.constant = 44;
             loadDailyDeeds()
         }
     }
@@ -59,18 +69,70 @@ class PointViewController: UIViewController, UITableViewDelegate, UITableViewDat
     }
     
     func loadDailyDeeds() {
+        
+        let username = UserDefaults.standard.object(forKey: AppDefault.Username) as! String
+        
+        MBProgressHUD.showAdded(to: self.view, animated: true)
+        WebServiceManager.pointRecentDeeds(username: username, completionHandler:{ (isSuccess, responseData, message) in
+            
+            DispatchQueue.main.async {
+                
+                self.arrayRecent = responseData;
+                self.tblPoint.reloadData();
+                MBProgressHUD.hide(for: self.view, animated: true)
+            }
+        })
     }
     
     // MARK: - TableView
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.arrayPoint.count
+        if segmentPoints.selectedSegmentIndex == 0 {
+            return self.arrayPoint.count
+        }
+        else {
+            return self.arrayRecent.count
+        }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell : PointTableViewCell = tableView.dequeueReusableCell(withIdentifier: "PointTableViewCell") as! PointTableViewCell
-        cell.lblTitle.text = arrayPoint[indexPath.row].descriptionField
+        
+        if segmentPoints.selectedSegmentIndex == 0 {
+            cell.delegate = self;
+            cell.tag = indexPath.row
+            cell.lblTitle.text = arrayPoint[indexPath.row].descriptionField
+        }
+        else {
+            
+            cell.lblTitle.text = arrayRecent[indexPath.row].deed
+        }
+        
         return cell
     }
+    
+    func pointDeedAdded(at: Int) {
+        let username = UserDefaults.standard.object(forKey: AppDefault.Username) as! String
+        let deedSelected = arrayPoint[at].descriptionField
+        let dateToday = Date()
+        
+        MBProgressHUD.showAdded(to: self.view, animated: true)
+        WebServiceManager.pointAddDeeds(username: username, deed: deedSelected!, date: dateToday, completionHandler: {(isSuccess, message) -> () in
+            DispatchQueue.main.async {
+                
+                MBProgressHUD.hide(for: self.view, animated: true)
+                let alert = UIAlertController(title: "XPower", message: message, preferredStyle: .alert)
+                self.present(alert, animated: true, completion: nil)
+                
+                // change to desired number of seconds (in this case 5 seconds)
+                let when = DispatchTime.now() + 2
+                DispatchQueue.main.asyncAfter(deadline: when){
+                    // your code with delay
+                    alert.dismiss(animated: true, completion: nil)
+                }
+            }
+        })
+    }
+    
     /*
     // MARK: - Navigation
 

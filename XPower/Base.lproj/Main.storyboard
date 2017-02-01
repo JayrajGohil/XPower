@@ -404,7 +404,7 @@
                         <rect key="frame" x="0.0" y="64" width="375" height="603"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="pyV-28-fWv">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="60" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="pyV-28-fWv">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="554"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <connections>
@@ -442,9 +442,13 @@
                         <rect key="frame" x="0.0" y="64" width="375" height="603"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="2aY-Gk-Vdo">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="60" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="2aY-Gk-Vdo">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="554"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="RYz-wk-kt7" id="87i-DN-Qkz"/>
+                                    <outlet property="delegate" destination="RYz-wk-kt7" id="5s5-uv-kxd"/>
+                                </connections>
                             </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -490,8 +494,8 @@
                                     <action selector="segmentValueChange:" destination="8xr-IK-SIp" eventType="valueChanged" id="eR5-hi-Fdm"/>
                                 </connections>
                             </segmentedControl>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="54" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="2pR-L3-7VD">
-                                <rect key="frame" x="0.0" y="36" width="375" height="472"/>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="60" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="2pR-L3-7VD">
+                                <rect key="frame" x="0.0" y="36" width="375" height="466"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <connections>
                                     <outlet property="dataSource" destination="8xr-IK-SIp" id="xxT-q1-de0"/>
@@ -499,9 +503,9 @@
                                 </connections>
                             </tableView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="olP-ZP-hL0">
-                                <rect key="frame" x="131" y="516" width="112" height="30"/>
+                                <rect key="frame" x="131" y="510" width="112" height="44"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="30" id="XMJ-7n-PL5"/>
+                                    <constraint firstAttribute="height" constant="44" id="XMJ-7n-PL5"/>
                                     <constraint firstAttribute="width" constant="112" id="piN-a3-g75"/>
                                 </constraints>
                                 <state key="normal" title="Pick a date"/>
@@ -517,7 +521,7 @@
                             <constraint firstItem="2pR-L3-7VD" firstAttribute="top" secondItem="ued-ON-Iyd" secondAttribute="bottom" constant="8" id="LA7-eS-kcZ"/>
                             <constraint firstAttribute="trailing" secondItem="2pR-L3-7VD" secondAttribute="trailing" id="YW3-cE-R32"/>
                             <constraint firstItem="ued-ON-Iyd" firstAttribute="centerX" secondItem="lts-Vi-RfZ" secondAttribute="centerX" id="Yus-hF-4Mw"/>
-                            <constraint firstItem="022-Wa-1AF" firstAttribute="top" secondItem="olP-ZP-hL0" secondAttribute="bottom" constant="8" id="ajy-tx-Iym"/>
+                            <constraint firstItem="022-Wa-1AF" firstAttribute="top" secondItem="olP-ZP-hL0" secondAttribute="bottom" id="ajy-tx-Iym"/>
                             <constraint firstItem="olP-ZP-hL0" firstAttribute="top" secondItem="2pR-L3-7VD" secondAttribute="bottom" constant="8" id="cqy-6E-tm3"/>
                             <constraint firstItem="olP-ZP-hL0" firstAttribute="centerX" secondItem="lts-Vi-RfZ" secondAttribute="centerX" id="yQ9-lP-jGU"/>
                         </constraints>
@@ -525,6 +529,7 @@
                     <tabBarItem key="tabBarItem" title="Points" id="fmx-e3-JTw"/>
                     <connections>
                         <outlet property="btnDate" destination="olP-ZP-hL0" id="aWf-q7-zDg"/>
+                        <outlet property="constraint_btnHeight" destination="XMJ-7n-PL5" id="a3C-b7-E7R"/>
                         <outlet property="segmentPoints" destination="ued-ON-Iyd" id="jRe-Hu-QTN"/>
                         <outlet property="tblPoint" destination="2pR-L3-7VD" id="4m6-TN-gDW"/>
                     </connections>

@@ -8,10 +8,18 @@
 
 import UIKit
 
+protocol PointTableCellDelegate {
+    func pointDeedAdded(at: Int)
+}
+
 class PointTableViewCell: UITableViewCell {
 
     @IBOutlet weak var btnAdd: UIButton!
     @IBOutlet weak var lblTitle: UILabel!
+    @IBOutlet weak var constraint_BtnWidth: NSLayoutConstraint!
+    
+    var delegate:PointTableCellDelegate?
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -24,5 +32,6 @@ class PointTableViewCell: UITableViewCell {
     }
     
     @IBAction func pressAddBtn(_ sender: Any) {
+        delegate?.pointDeedAdded(at: self.tag)
     }
 }

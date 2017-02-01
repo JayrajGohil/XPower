@@ -9,7 +9,7 @@
 import UIKit
 import MBProgressHUD
 
-class FavoriteViewController: UIViewController, UITableViewDelegate, UITableViewDataSource  {
+class FavoriteViewController: UIViewController, UITableViewDelegate, UITableViewDataSource,PointTableCellDelegate  {
 
     @IBOutlet weak var tblPoint: UITableView!
     
@@ -52,10 +52,34 @@ class FavoriteViewController: UIViewController, UITableViewDelegate, UITableView
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell : PointTableViewCell = tableView.dequeueReusableCell(withIdentifier: "PointTableViewCell") as! PointTableViewCell
+        cell.delegate = self;
+        cell.tag = indexPath.row
         cell.lblTitle.text = arrayFav[indexPath.row].favorite
         return cell
     }
     
+    func pointDeedAdded(at: Int) {
+        let username = UserDefaults.standard.object(forKey: AppDefault.Username) as! String
+        let deedSelected = arrayFav[at].favorite
+        let dateToday = Date()
+        
+        MBProgressHUD.showAdded(to: self.view, animated: true)
+        WebServiceManager.pointAddDeeds(username: username, deed: deedSelected!, date: dateToday, completionHandler: {(isSuccess, message) -> () in
+            DispatchQueue.main.async {
+                
+                MBProgressHUD.hide(for: self.view, animated: true)
+                let alert = UIAlertController(title: "XPower", message: message, preferredStyle: .alert)
+                self.present(alert, animated: true, completion: nil)
+                
+                // change to desired number of seconds (in this case 5 seconds)
+                let when = DispatchTime.now() + 2
+                DispatchQueue.main.asyncAfter(deadline: when){
+                    // your code with delay
+                    alert.dismiss(animated: true, completion: nil)
+                }
+            }
+        })
+    }
     /*
     // MARK: - Navigation
 

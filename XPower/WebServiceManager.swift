@@ -175,6 +175,52 @@ class WebServiceManager: NSObject {
         })
     }
     
+    class func pointAddDeeds(username:String, deed:String, date:Date, completionHandler:@escaping(Bool, String)->()) {
+        
+        let url = API.UrlHost+API.UrlPointAddDeed
+        let dateFormat = DateFormatter()
+        dateFormat.dateFormat = "yyyy-MM-dd HH:mm:ss"
+        let strDate = dateFormat.string(from: date)
+        let params = ["user":username,
+                      "deed":deed,
+                      "date":strDate]
+        
+        self.fetchData(withPOST: url, parameter: params as [String : AnyObject], completionHandler: {(isSuccess, responseData, error) -> () in
+            
+            if isSuccess {
+                let jsonData = responseData  as! [String: String]
+                print(jsonData)
+                completionHandler(true, jsonData["Result"]!)
+            }
+            else {
+                completionHandler(false, error)
+            }
+        })
+    }
+    
+    class func pointRecentDeeds(username:String, completionHandler:@escaping(Bool, [RecentDeedModel], String)->()) {
+        
+        let url = API.UrlHost+API.UrlPointRecentDeed
+        let params = ["Username":username]
+        
+        self.fetchData(withPOST: url, parameter: params as [String : AnyObject], completionHandler: {(isSuccess, responseData, error) -> () in
+            
+            var arrayPoint = [AnyObject]()
+            if isSuccess {
+                let jsonData = responseData  as! [AnyObject]
+                
+                for model in jsonData {
+                    let rModel = RecentDeedModel(fromDictionary: model as! NSDictionary)
+                    arrayPoint.append(rModel)
+                }
+                completionHandler(true, arrayPoint as! [RecentDeedModel], "")
+            }
+            else {
+                completionHandler(false, arrayPoint as! [RecentDeedModel], error)
+            }
+        })
+    }
+    
     class func fetchData(withPOST url:String, parameter param:[String:AnyObject], completionHandler:@escaping (Bool, AnyObject, String)->()) {
         
         var header: HTTPHeaders = ["Content-Type":"application/json"]
