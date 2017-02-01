@@ -38,6 +38,10 @@ struct API {
     static let UrlPointFavorite = "/PointService.svc/getfavorites"
     static let UrlPointRecentDeed = "/PointService.svc/getrecentdeeds"
     static let UrlPointAddDeed = "/PointService.svc/adddeeds"
+    
+    static let UrlFriendRequestList = "/UserService.svc/getfriendrequests"
+    static let UrlFriendAdd = "/UserService.svc/addfriendrequest"
+    static let UrlFriendStatus = "/UserService.svc/respondfriendrequest"
 }
 
 struct SecureKey {

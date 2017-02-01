@@ -15,6 +15,11 @@
 		29423D321E37AB8E00CC86C0 /* WebServiceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29423D301E37AB8E00CC86C0 /* WebServiceManager.swift */; };
 		29423D331E37AB8E00CC86C0 /* WebServiceFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29423D311E37AB8E00CC86C0 /* WebServiceFactory.swift */; };
 		29423D351E37B38400CC86C0 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29423D341E37B38400CC86C0 /* Constants.swift */; };
+		294A7C5C1E423C240057205C /* Request.swift in Sources */ = {isa = PBXBuildFile; fileRef = 294A7C5A1E423C240057205C /* Request.swift */; };
+		294A7C5D1E423C240057205C /* FriendRequestListModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 294A7C5B1E423C240057205C /* FriendRequestListModel.swift */; };
+		294A7C5F1E423E5C0057205C /* FriendViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 294A7C5E1E423E5C0057205C /* FriendViewController.swift */; };
+		294A7C611E4246000057205C /* FriendRequestTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 294A7C601E4246000057205C /* FriendRequestTableViewCell.swift */; };
+		294A7C631E427D9B0057205C /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 294A7C621E427D9B0057205C /* ChatViewController.swift */; };
 		295324D61E3FAA57006B3582 /* PointViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 295324D51E3FAA57006B3582 /* PointViewController.swift */; };
 		295324D81E3FAA64006B3582 /* FavoriteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 295324D71E3FAA64006B3582 /* FavoriteViewController.swift */; };
 		295324DA1E3FAA6C006B3582 /* RecentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 295324D91E3FAA6C006B3582 /* RecentViewController.swift */; };
@@ -71,6 +76,11 @@
 		29423D311E37AB8E00CC86C0 /* WebServiceFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebServiceFactory.swift; sourceTree = "<group>"; };
 		29423D341E37B38400CC86C0 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		29423D361E37BF3500CC86C0 /* Alamofire.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Alamofire.framework; path = "../../../../../../Library/Developer/Xcode/DerivedData/XPower-dxitaqgwnezccacdaeqrtecabjvr/Build/Products/Debug-iphonesimulator/Alamofire/Alamofire.framework"; sourceTree = "<group>"; };
+		294A7C5A1E423C240057205C /* Request.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Request.swift; sourceTree = "<group>"; };
+		294A7C5B1E423C240057205C /* FriendRequestListModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FriendRequestListModel.swift; sourceTree = "<group>"; };
+		294A7C5E1E423E5C0057205C /* FriendViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FriendViewController.swift; sourceTree = "<group>"; };
+		294A7C601E4246000057205C /* FriendRequestTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FriendRequestTableViewCell.swift; sourceTree = "<group>"; };
+		294A7C621E427D9B0057205C /* ChatViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatViewController.swift; sourceTree = "<group>"; };
 		295324D51E3FAA57006B3582 /* PointViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PointViewController.swift; sourceTree = "<group>"; };
 		295324D71E3FAA64006B3582 /* FavoriteViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FavoriteViewController.swift; sourceTree = "<group>"; };
 		295324D91E3FAA6C006B3582 /* RecentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecentViewController.swift; sourceTree = "<group>"; };
@@ -191,6 +201,8 @@
 				295324DF1E3FE5F5006B3582 /* PointTable.swift */,
 				295324E11E3FF3BE006B3582 /* FavoriteModel.swift */,
 				292637921E40EAE000028C99 /* RecentDeedModel.swift */,
+				294A7C5A1E423C240057205C /* Request.swift */,
+				294A7C5B1E423C240057205C /* FriendRequestListModel.swift */,
 				29A006A61E37FB2D0055CFD3 /* XPower-Bridging-Header.h */,
 				293E911F1E3A5024008323D1 /* String+AES.swift */,
 				29C037151E3A6F54003185B7 /* KeychainWrapper.h */,
@@ -202,6 +214,9 @@
 				295324D91E3FAA6C006B3582 /* RecentViewController.swift */,
 				295324DB1E3FAC3C006B3582 /* PointTableViewCell.swift */,
 				295324DC1E3FAC3C006B3582 /* PointTableViewCell.xib */,
+				294A7C5E1E423E5C0057205C /* FriendViewController.swift */,
+				294A7C601E4246000057205C /* FriendRequestTableViewCell.swift */,
+				294A7C621E427D9B0057205C /* ChatViewController.swift */,
 			);
 			path = XPower;
 			sourceTree = "<group>";
@@ -541,8 +556,10 @@
 				29423D321E37AB8E00CC86C0 /* WebServiceManager.swift in Sources */,
 				29F575321E36B62800626DFD /* SVSlidingPanelViewController.swift in Sources */,
 				29F5752C1E36AF9200626DFD /* SignUpViewController.swift in Sources */,
+				294A7C5D1E423C240057205C /* FriendRequestListModel.swift in Sources */,
 				29F5752A1E36AE2300626DFD /* HomeViewController.swift in Sources */,
 				295324E01E3FE5F5006B3582 /* PointTable.swift in Sources */,
+				294A7C5F1E423E5C0057205C /* FriendViewController.swift in Sources */,
 				29A006A51E37F67D0055CFD3 /* LoginModel.swift in Sources */,
 				295324D61E3FAA57006B3582 /* PointViewController.swift in Sources */,
 				29F574F91E36ADFA00626DFD /* LoginViewController.swift in Sources */,
@@ -553,6 +570,8 @@
 				29F574F71E36ADFA00626DFD /* AppDelegate.swift in Sources */,
 				29C037171E3A6F54003185B7 /* KeychainWrapper.m in Sources */,
 				295324DA1E3FAA6C006B3582 /* RecentViewController.swift in Sources */,
+				294A7C611E4246000057205C /* FriendRequestTableViewCell.swift in Sources */,
+				294A7C5C1E423C240057205C /* Request.swift in Sources */,
 				295324DD1E3FAC3C006B3582 /* PointTableViewCell.swift in Sources */,
 				29423D351E37B38400CC86C0 /* Constants.swift in Sources */,
 				29F575341E36B79000626DFD /* SVMenuOptionManager.swift in Sources */,
@@ -563,6 +582,7 @@
 				29423D2D1E37A26800CC86C0 /* LeftMenuTableViewCell.swift in Sources */,
 				295B03B51E3FA10200A86BBD /* PointsTabbarViewController.swift in Sources */,
 				295B03B31E3F8DFF00A86BBD /* ScoreViewController.swift in Sources */,
+				294A7C631E427D9B0057205C /* ChatViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

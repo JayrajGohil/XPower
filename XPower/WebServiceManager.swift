@@ -189,7 +189,6 @@ class WebServiceManager: NSObject {
             
             if isSuccess {
                 let jsonData = responseData  as! [String: String]
-                print(jsonData)
                 completionHandler(true, jsonData["Result"]!)
             }
             else {
@@ -217,6 +216,72 @@ class WebServiceManager: NSObject {
             }
             else {
                 completionHandler(false, arrayPoint as! [RecentDeedModel], error)
+            }
+        })
+    }
+    
+    class func friendRequestList(username:String, completionHandler:@escaping(Bool, FriendRequestListModel, String)->()) {
+        
+        let url = API.UrlHost+API.UrlFriendRequestList
+        let params = ["Username":username]
+        
+        self.fetchData(withPOST: url, parameter: params as [String : AnyObject], completionHandler: {(isSuccess, responseData, error) -> () in
+            
+            var frModel = FriendRequestListModel(fromDictionary: NSDictionary())
+            if isSuccess {
+                let jsonData = responseData  as! NSDictionary
+                frModel = FriendRequestListModel(fromDictionary: jsonData)
+                completionHandler(true, frModel, "")
+            }
+            else {
+                completionHandler(false, frModel, error)
+            }
+        })
+    }
+    
+    class func friendAdd(sender:String, receiver:String, completionHandler:@escaping(Bool, String)->()) {
+        
+        let url = API.UrlHost+API.UrlFriendAdd
+        let params = ["Sender":sender,
+                      "Reciever":receiver]
+        
+        self.fetchData(withPOST: url, parameter: params as [String : AnyObject], completionHandler: {(isSuccess, responseData, error) -> () in
+            
+            if isSuccess {
+                let jsonData = responseData  as! NSDictionary
+                guard let strResult = jsonData["Result"] else{
+                    completionHandler(false, error)
+                    return
+                }
+                
+                completionHandler(true, strResult as! String)
+            }
+            else {
+                completionHandler(false, error)
+            }
+        })
+    }
+    
+    class func friendStatusResponse(sender:String, receiver:String, status:Int, completionHandler:@escaping(Bool, String)->()) {
+        
+        let url = API.UrlHost+API.UrlFriendStatus
+        let params = ["Sender":sender,
+                      "Reciever":receiver,
+                      "Status":status] as [String : Any]
+        
+        self.fetchData(withPOST: url, parameter: params as [String : AnyObject], completionHandler: {(isSuccess, responseData, error) -> () in
+            
+            if isSuccess {
+                let jsonData = responseData  as! NSDictionary
+                guard let strResult = jsonData["Result"] else{
+                    completionHandler(false, error)
+                    return
+                }
+                
+                completionHandler(true, strResult as! String)
+            }
+            else {
+                completionHandler(false, error)
             }
         })
     }

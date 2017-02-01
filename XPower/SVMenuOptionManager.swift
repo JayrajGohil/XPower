@@ -85,6 +85,8 @@ class SVMenuOptionManager: NSObject {
             break
         case 3:
             // Friends
+            let friendVC: FriendViewController = mainStoryboard.instantiateViewController(withIdentifier: "FriendViewController") as! FriendViewController
+            navigationController.viewControllers = [friendVC]
             break
         case 4:
             // Settings
