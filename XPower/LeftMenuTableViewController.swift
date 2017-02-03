@@ -24,6 +24,11 @@ class LeftMenuTableViewController: UITableViewController {
         
     }
 
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        self.tableView.reloadData()
+    }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -37,8 +42,7 @@ class LeftMenuTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let headerView: LeftMenuHeaderView = tableView.dequeueReusableCell(withIdentifier: "LeftMenuHeaderView") as! LeftMenuHeaderView
-        let keychain = KeychainWrapper()
-        let username = keychain.myObject(forKey: kSecAttrAccount) as! String
+        let username = UserDefaults.standard.object(forKey: AppDefault.Username) as? String
         headerView.lblUsername.text = username
         
         return headerView

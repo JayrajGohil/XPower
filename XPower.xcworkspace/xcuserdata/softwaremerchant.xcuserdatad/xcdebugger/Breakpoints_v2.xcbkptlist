@@ -16,160 +16,16 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "No"
+            shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "XPower/FriendViewController.swift"
-            timestampString = "507827387.392021"
+            filePath = "XPower/LoginViewController.swift"
+            timestampString = "507847265.556555"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "124"
-            endingLineNumber = "124"
-            landmarkName = "loadFriendRequest()"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "XPower/FriendViewController.swift"
-            timestampString = "507827387.392021"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "111"
-            endingLineNumber = "111"
-            landmarkName = "loadFriendRequest()"
-            landmarkType = "7">
-            <Locations>
-               <Location
-                  shouldBeEnabled = "No"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "XPower.FriendViewController.loadFriendRequest () -&gt; ()"
-                  moduleName = "XPower"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/softwaremerchant/Documents/Jayraj/Coding%20Test/Xpower/XPower_SourceCode/XPower/XPower/FriendViewController.swift"
-                  timestampString = "507741564.0619"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "105"
-                  endingLineNumber = "105"
-                  offsetFromSymbolStart = "870">
-               </Location>
-               <Location
-                  shouldBeEnabled = "No"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "XPower.FriendViewController.(loadFriendRequest () -&gt; ()).(closure #1)"
-                  moduleName = "XPower"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/softwaremerchant/Documents/Jayraj/Coding%20Test/Xpower/XPower_SourceCode/XPower/XPower/FriendViewController.swift"
-                  timestampString = "507741564.063145"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "107"
-                  endingLineNumber = "107"
-                  offsetFromSymbolStart = "14">
-               </Location>
-            </Locations>
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "XPower/FriendViewController.swift"
-            timestampString = "507827387.392021"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "102"
-            endingLineNumber = "102"
-            landmarkName = "loadFriendList()"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "XPower/FriendViewController.swift"
-            timestampString = "507827387.392021"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "94"
-            endingLineNumber = "94"
-            landmarkName = "loadFriendList()"
-            landmarkType = "7">
-            <Locations>
-               <Location
-                  shouldBeEnabled = "No"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "XPower.FriendViewController.loadFriendList () -&gt; ()"
-                  moduleName = "XPower"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/softwaremerchant/Documents/Jayraj/Coding%20Test/Xpower/XPower_SourceCode/XPower/XPower/FriendViewController.swift"
-                  timestampString = "507741564.068035"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "88"
-                  endingLineNumber = "88"
-                  offsetFromSymbolStart = "870">
-               </Location>
-               <Location
-                  shouldBeEnabled = "No"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "XPower.FriendViewController.(loadFriendList () -&gt; ()).(closure #1)"
-                  moduleName = "XPower"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/softwaremerchant/Documents/Jayraj/Coding%20Test/Xpower/XPower_SourceCode/XPower/XPower/FriendViewController.swift"
-                  timestampString = "507741564.06925"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "90"
-                  endingLineNumber = "90"
-                  offsetFromSymbolStart = "14">
-               </Location>
-            </Locations>
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "XPower/FriendViewController.swift"
-            timestampString = "507827387.392021"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "48"
-            endingLineNumber = "48"
-            landmarkName = "viewDidLoad()"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "XPower/FriendViewController.swift"
-            timestampString = "507827387.392021"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "41"
-            endingLineNumber = "41"
-            landmarkName = "viewDidLoad()"
+            startingLineNumber = "79"
+            endingLineNumber = "79"
+            landmarkName = "pressLoginBtn(_:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -179,13 +35,61 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "XPower/ChatViewController.swift"
-            timestampString = "507833492.891784"
+            filePath = "XPower/WebServiceManager.swift"
+            timestampString = "507847948.692909"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "42"
-            endingLineNumber = "42"
-            landmarkName = "viewDidLoad()"
+            startingLineNumber = "272"
+            endingLineNumber = "272"
+            landmarkName = "friendStatusResponse(sender:receiver:status:completionHandler:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "static XPower.WebServiceManager.friendStatusResponse (sender : Swift.String, receiver : Swift.String, status : Swift.Int, completionHandler : (Swift.Bool, Swift.String) -&gt; ()) -&gt; ()"
+                  moduleName = "XPower"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/softwaremerchant/Documents/Jayraj/Coding%20Test/Xpower/XPower_SourceCode/XPower/XPower/WebServiceManager.swift"
+                  timestampString = "507853100.100905"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "272"
+                  endingLineNumber = "272"
+                  offsetFromSymbolStart = "747">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "static XPower.WebServiceManager.(friendStatusResponse (sender : Swift.String, receiver : Swift.String, status : Swift.Int, completionHandler : (Swift.Bool, Swift.String) -&gt; ()) -&gt; ()).(closure #1)"
+                  moduleName = "XPower"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/softwaremerchant/Documents/Jayraj/Coding%20Test/Xpower/XPower_SourceCode/XPower/XPower/WebServiceManager.swift"
+                  timestampString = "507853100.103388"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "274"
+                  endingLineNumber = "274"
+                  offsetFromSymbolStart = "53">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "XPower/WebServiceManager.swift"
+            timestampString = "507847958.345915"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "276"
+            endingLineNumber = "276"
+            landmarkName = "friendStatusResponse(sender:receiver:status:completionHandler:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

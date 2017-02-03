@@ -22,39 +22,109 @@ extension NSDate {
     
 }
 
-class ChatViewController: UIViewController {
+class ChatViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UITextViewDelegate {
 
     @IBOutlet weak var tblChat: UITableView!
     @IBOutlet weak var viewBottom: UIView!
-    @IBOutlet weak var txtvMessage: UIView!
-    @IBOutlet weak var btnSend: UIView!
+    @IBOutlet weak var txtvMessage: UITextView!
+    @IBOutlet weak var btnSend: UIButton!
+    @IBOutlet weak var constraint_view_bottom: NSLayoutConstraint!
     
     var chatMessageModel:ChatGetMessageModel = ChatGetMessageModel(fromDictionary: NSDictionary())
     var username:String? = nil
     
     var receiver:String? = nil
+    var timer:Timer = Timer()
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-        let cd = NSDate.formattedWith(NSDate())
-        username = UserDefaults.standard.object(forKey: AppDefault.Username) as? String
-        self.loadMessages()
+        
     }
 
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.navigationController?.navigationBar.isTranslucent = false
+        
+        self.btnSend.isEnabled = false
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillShow), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillHide), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
+        
+        username = UserDefaults.standard.object(forKey: AppDefault.Username) as? String
+        self.loadMessages()
+        
+        timer = Timer(timeInterval: 3, target: self, selector: #selector(loadMessages), userInfo: nil, repeats: true)
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        
+        NotificationCenter.default.removeObserver(self, name: NSNotification.Name.UIKeyboardWillShow, object: nil)
+        NotificationCenter.default.removeObserver(self, name: NSNotification.Name.UIKeyboardWillHide, object: nil)
+        
+        timer.invalidate()
+    }
+    
+    func keyboardWillShow(notification: NSNotification) {
+        
+        if let keyboardSize = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
+            
+            UIView.animate(withDuration: 0.1, animations: { () -> Void in
+                self.constraint_view_bottom.constant = keyboardSize.size.height
+            })
+        }
+    }
+    
+    func keyboardWillHide(notification: NSNotification) {
+        
+        if let keyboardSize = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
+            
+            UIView.animate(withDuration: 0.1, animations: { () -> Void in
+                self.constraint_view_bottom.constant = 0
+            })
+        }
+    }
+
+    @IBAction func tapTableView(_ sender: Any) {
+        UIView.animate(withDuration: 0.1, animations: { () -> Void in
+            self.view.endEditing(true)
+        })
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
     
     @IBAction func pressSendBtn(_ sender: Any) {
+        
+        self.view.endEditing(true)
+        MBProgressHUD.showAdded(to: self.view, animated: true)
+        
+        let strdate = NSDate().formattedWith(format: "yyyy/MM/dd hh:mm:ss a")
+        WebServiceManager.chatSend(sender: username!, reciever: receiver!, message: self.txtvMessage.text,  date:strdate, completionHandler:{ (isSuccess, message) in
+
+            DispatchQueue.main.async {
+                if isSuccess {
+                    self.txtvMessage.text = ""
+                    MBProgressHUD.hide(for: self.view, animated: true)
+                    self.loadMessages()
+                }
+                else{
+                    
+                    let alert:UIAlertController = UIAlertController(title: "Error", message: message, preferredStyle: .alert)
+                    alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+                    self.present(alert, animated: true, completion: { })
+                }
+            }
+        })
     }
     
     func loadMessages() {
         
         MBProgressHUD.showAdded(to: self.view, animated: true)
-        WebServiceManager.chatGet(sender: username!, reciever: receiver!, completionHandler:{ (isSuccess, responseData, message) in
+        WebServiceManager.chatGet(sender: self.username!, reciever: self.receiver!, date:"1970/01/01 00:00:00", completionHandler:{ (isSuccess, responseData, message) in
             
             DispatchQueue.main.async {
                 
@@ -62,6 +132,9 @@ class ChatViewController: UIViewController {
                 if isSuccess {
                     self.chatMessageModel = responseData;
                     self.tblChat.reloadData();
+                    if self.chatMessageModel.messages.count > 0 {
+                        self.tblChat.scrollToRow(at: IndexPath(row: self.chatMessageModel.messages.count-1, section: 0), at: .bottom, animated: true)
+                    }
                 }
                 else{
                     let alert:UIAlertController = UIAlertController(title: "Error", message: message, preferredStyle: .alert)
@@ -78,20 +151,38 @@ class ChatViewController: UIViewController {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell : ChatTableViewCell = tableView.dequeueReusableCell(withIdentifier: "ChatTableViewCell") as! ChatTableViewCell
+        let cell : ChatTableViewCell = tableView.dequeueReusableCell(withIdentifier: "ChatTableViewCell", for: indexPath) as! ChatTableViewCell
         
         let msg = self.chatMessageModel.messages[indexPath.row]
         cell.lblMessage.text = msg.message
         if username == msg.sender {
             cell.lblMessage.textAlignment = NSTextAlignment.right
-            cell.constraint_lblTitle_Leading.constant = 30;
+            cell.constraint_lblTitle_Leading.constant = 80;
         }
         else{
             
             cell.lblMessage.textAlignment = NSTextAlignment.left
-            cell.constraint_lblTitle_Trailing.constant = 30;
+            cell.constraint_lblTitle_Trailing.constant = 80;
         }
         return cell
+    }
+    
+    // MARK: - TextView Delegate
+    
+    func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
+        
+        if textView.text.characters.count == 0 && (text == " " || text == "\n"){
+            self.btnSend.isEnabled = false
+            return false
+        }
+        else if (textView.text.characters.count == 1 && text == ""){
+            self.btnSend.isEnabled = false
+            return true
+        }
+        else{
+            self.btnSend.isEnabled = true
+            return true
+        }
     }
 
     /*

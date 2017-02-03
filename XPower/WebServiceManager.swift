@@ -305,13 +305,13 @@ class WebServiceManager: NSObject {
         })
     }
     
-    class func chatSend(sender:String, reciever:String, message:String, completionHandler:@escaping(Bool, String)->()) {
+    class func chatSend(sender:String, reciever:String, message:String, date:String, completionHandler:@escaping(Bool, String)->()) {
         
         let url = API.UrlHost+API.UrlChatSend
         let params = ["Sender":sender,
                       "Reciever":reciever,
                       "Message":message,
-                      "DateAndTime":""]
+                      "DateAndTime": date]
         
         self.fetchData(withPOST: url, parameter: params as [String : AnyObject], completionHandler: {(isSuccess, responseData, error) -> () in
             
@@ -330,12 +330,12 @@ class WebServiceManager: NSObject {
         })
     }
     
-    class func chatGet(sender:String, reciever:String, completionHandler:@escaping(Bool, ChatGetMessageModel, String)->()) {
+    class func chatGet(sender:String, reciever:String, date:String, completionHandler:@escaping(Bool, ChatGetMessageModel, String)->()) {
         
         let url = API.UrlHost+API.UrlChatGet
         let params = ["Sender":sender,
                       "Reciever":reciever,
-                      "DateAndTime":""]
+                      "DateAndTime":date]
         
         self.fetchData(withPOST: url, parameter: params as [String : AnyObject], completionHandler: {(isSuccess, responseData, error) -> () in
             
