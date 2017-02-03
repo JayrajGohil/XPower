@@ -90,6 +90,8 @@ class SVMenuOptionManager: NSObject {
             break
         case 4:
             // Settings
+            let settingVC: SettingViewController = mainStoryboard.instantiateViewController(withIdentifier: "SettingViewController") as! SettingViewController
+            navigationController.viewControllers = [settingVC]
             break
         case 5:
             // Logout

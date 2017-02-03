@@ -27,9 +27,16 @@
 		295324DE1E3FAC3C006B3582 /* PointTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 295324DC1E3FAC3C006B3582 /* PointTableViewCell.xib */; };
 		295324E01E3FE5F5006B3582 /* PointTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 295324DF1E3FE5F5006B3582 /* PointTable.swift */; };
 		295324E21E3FF3BE006B3582 /* FavoriteModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 295324E11E3FF3BE006B3582 /* FavoriteModel.swift */; };
+		29595FC31E437C1E00CD99A6 /* Friend.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29595FC11E437C1E00CD99A6 /* Friend.swift */; };
+		29595FC41E437C1E00CD99A6 /* FriendListModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29595FC21E437C1E00CD99A6 /* FriendListModel.swift */; };
 		295988661E3BAD91003AC823 /* LeftMenuHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 295988651E3BAD91003AC823 /* LeftMenuHeaderView.swift */; };
 		295B03B31E3F8DFF00A86BBD /* ScoreViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 295B03B21E3F8DFF00A86BBD /* ScoreViewController.swift */; };
 		295B03B51E3FA10200A86BBD /* PointsTabbarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 295B03B41E3FA10200A86BBD /* PointsTabbarViewController.swift */; };
+		296C1B881E44D6D400730D9F /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 296C1B871E44D6D400730D9F /* SettingViewController.swift */; };
+		299173521E43A049002AB9F3 /* ChatTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 299173511E43A049002AB9F3 /* ChatTableViewCell.swift */; };
+		299173551E43A411002AB9F3 /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 299173531E43A411002AB9F3 /* Message.swift */; };
+		299173561E43A411002AB9F3 /* ChatGetMessageModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 299173541E43A411002AB9F3 /* ChatGetMessageModel.swift */; };
+		299173581E43E63B002AB9F3 /* ImageviewExtenstion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 299173571E43E63B002AB9F3 /* ImageviewExtenstion.swift */; };
 		29A006A51E37F67D0055CFD3 /* LoginModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29A006A41E37F67D0055CFD3 /* LoginModel.swift */; };
 		29C037171E3A6F54003185B7 /* KeychainWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = 29C037161E3A6F54003185B7 /* KeychainWrapper.m */; };
 		29F574F71E36ADFA00626DFD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29F574F61E36ADFA00626DFD /* AppDelegate.swift */; };
@@ -88,9 +95,16 @@
 		295324DC1E3FAC3C006B3582 /* PointTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PointTableViewCell.xib; sourceTree = "<group>"; };
 		295324DF1E3FE5F5006B3582 /* PointTable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PointTable.swift; sourceTree = "<group>"; };
 		295324E11E3FF3BE006B3582 /* FavoriteModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FavoriteModel.swift; sourceTree = "<group>"; };
+		29595FC11E437C1E00CD99A6 /* Friend.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Friend.swift; sourceTree = "<group>"; };
+		29595FC21E437C1E00CD99A6 /* FriendListModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FriendListModel.swift; sourceTree = "<group>"; };
 		295988651E3BAD91003AC823 /* LeftMenuHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LeftMenuHeaderView.swift; sourceTree = "<group>"; };
 		295B03B21E3F8DFF00A86BBD /* ScoreViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScoreViewController.swift; sourceTree = "<group>"; };
 		295B03B41E3FA10200A86BBD /* PointsTabbarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PointsTabbarViewController.swift; sourceTree = "<group>"; };
+		296C1B871E44D6D400730D9F /* SettingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
+		299173511E43A049002AB9F3 /* ChatTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatTableViewCell.swift; sourceTree = "<group>"; };
+		299173531E43A411002AB9F3 /* Message.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
+		299173541E43A411002AB9F3 /* ChatGetMessageModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatGetMessageModel.swift; sourceTree = "<group>"; };
+		299173571E43E63B002AB9F3 /* ImageviewExtenstion.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageviewExtenstion.swift; sourceTree = "<group>"; };
 		29A006A41E37F67D0055CFD3 /* LoginModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginModel.swift; sourceTree = "<group>"; };
 		29A006A61E37FB2D0055CFD3 /* XPower-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "XPower-Bridging-Header.h"; sourceTree = "<group>"; };
 		29C037151E3A6F54003185B7 /* KeychainWrapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KeychainWrapper.h; sourceTree = "<group>"; };
@@ -203,6 +217,10 @@
 				292637921E40EAE000028C99 /* RecentDeedModel.swift */,
 				294A7C5A1E423C240057205C /* Request.swift */,
 				294A7C5B1E423C240057205C /* FriendRequestListModel.swift */,
+				29595FC11E437C1E00CD99A6 /* Friend.swift */,
+				29595FC21E437C1E00CD99A6 /* FriendListModel.swift */,
+				299173531E43A411002AB9F3 /* Message.swift */,
+				299173541E43A411002AB9F3 /* ChatGetMessageModel.swift */,
 				29A006A61E37FB2D0055CFD3 /* XPower-Bridging-Header.h */,
 				293E911F1E3A5024008323D1 /* String+AES.swift */,
 				29C037151E3A6F54003185B7 /* KeychainWrapper.h */,
@@ -217,6 +235,9 @@
 				294A7C5E1E423E5C0057205C /* FriendViewController.swift */,
 				294A7C601E4246000057205C /* FriendRequestTableViewCell.swift */,
 				294A7C621E427D9B0057205C /* ChatViewController.swift */,
+				299173511E43A049002AB9F3 /* ChatTableViewCell.swift */,
+				299173571E43E63B002AB9F3 /* ImageviewExtenstion.swift */,
+				296C1B871E44D6D400730D9F /* SettingViewController.swift */,
 			);
 			path = XPower;
 			sourceTree = "<group>";
@@ -556,6 +577,7 @@
 				29423D321E37AB8E00CC86C0 /* WebServiceManager.swift in Sources */,
 				29F575321E36B62800626DFD /* SVSlidingPanelViewController.swift in Sources */,
 				29F5752C1E36AF9200626DFD /* SignUpViewController.swift in Sources */,
+				299173561E43A411002AB9F3 /* ChatGetMessageModel.swift in Sources */,
 				294A7C5D1E423C240057205C /* FriendRequestListModel.swift in Sources */,
 				29F5752A1E36AE2300626DFD /* HomeViewController.swift in Sources */,
 				295324E01E3FE5F5006B3582 /* PointTable.swift in Sources */,
@@ -576,13 +598,19 @@
 				29423D351E37B38400CC86C0 /* Constants.swift in Sources */,
 				29F575341E36B79000626DFD /* SVMenuOptionManager.swift in Sources */,
 				29423D331E37AB8E00CC86C0 /* WebServiceFactory.swift in Sources */,
+				299173581E43E63B002AB9F3 /* ImageviewExtenstion.swift in Sources */,
 				292637931E40EAE000028C99 /* RecentDeedModel.swift in Sources */,
+				29595FC41E437C1E00CD99A6 /* FriendListModel.swift in Sources */,
 				29423D2F1E37A79D00CC86C0 /* CommonViewController.swift in Sources */,
+				299173551E43A411002AB9F3 /* Message.swift in Sources */,
 				29F575301E36B4BE00626DFD /* LeftMenuTableViewController.swift in Sources */,
 				29423D2D1E37A26800CC86C0 /* LeftMenuTableViewCell.swift in Sources */,
+				299173521E43A049002AB9F3 /* ChatTableViewCell.swift in Sources */,
 				295B03B51E3FA10200A86BBD /* PointsTabbarViewController.swift in Sources */,
 				295B03B31E3F8DFF00A86BBD /* ScoreViewController.swift in Sources */,
+				296C1B881E44D6D400730D9F /* SettingViewController.swift in Sources */,
 				294A7C631E427D9B0057205C /* ChatViewController.swift in Sources */,
+				29595FC31E437C1E00CD99A6 /* Friend.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -738,6 +766,10 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = XPower/XPower.entitlements;
 				DEVELOPMENT_TEAM = W4GG6PDT54;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/XPower",
+				);
 				INFOPLIST_FILE = XPower/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.instock.XPower;
@@ -756,6 +788,10 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = XPower/XPower.entitlements;
 				DEVELOPMENT_TEAM = W4GG6PDT54;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/XPower",
+				);
 				INFOPLIST_FILE = XPower/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.instock.XPower;

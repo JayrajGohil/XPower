@@ -15,7 +15,7 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="60"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <rect key="frame" x="0.0" y="0.0" width="320" height="59"/>
+                <rect key="frame" x="0.0" y="0.0" width="320" height="59.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nBR-lY-to0">
@@ -35,6 +35,7 @@
                         </connections>
                     </button>
                 </subviews>
+                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                 <constraints>
                     <constraint firstItem="nBR-lY-to0" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="6HG-t2-3R0"/>
                     <constraint firstItem="qeL-TO-aWg" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="8" id="HXa-rA-c5n"/>
@@ -44,6 +45,7 @@
                     <constraint firstItem="qeL-TO-aWg" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="ypc-OX-Uv7"/>
                 </constraints>
             </tableViewCellContentView>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
             <connections>
                 <outlet property="btnAdd" destination="qeL-TO-aWg" id="Qw2-wN-MdW"/>
                 <outlet property="constraint_BtnWidth" destination="usn-vd-gfv" id="htd-rh-1y7"/>

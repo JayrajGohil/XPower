@@ -26,16 +26,21 @@ class SignUpViewController: UIViewController {
 
         // Do any additional setup after loading the view.
         self.btnSchool.titleLabel?.textAlignment = NSTextAlignment.center
+        
+        let imagv = UIImageView(frame: self.view.bounds)
+        imagv.loadFromFile(photo: "signup")
+        self.view.addSubview(imagv)
+        self.view.sendSubview(toBack: imagv)
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        self.navigationController?.isNavigationBarHidden  = false
+//        self.navigationController?.isNavigationBarHidden  = false
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        self.navigationController?.isNavigationBarHidden  = true
+//        self.navigationController?.isNavigationBarHidden  = true
     }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

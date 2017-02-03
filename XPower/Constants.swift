@@ -42,6 +42,10 @@ struct API {
     static let UrlFriendRequestList = "/UserService.svc/getfriendrequests"
     static let UrlFriendAdd = "/UserService.svc/addfriendrequest"
     static let UrlFriendStatus = "/UserService.svc/respondfriendrequest"
+    static let UrlFriendList = "/UserService.svc/getfriendslist"
+    
+    static let UrlChatSend = "/ChatService.svc/sendmessage"
+    static let UrlChatGet = "/ChatService.svc/getmessages"
 }
 
 struct SecureKey {

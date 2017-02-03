@@ -286,6 +286,71 @@ class WebServiceManager: NSObject {
         })
     }
     
+    class func friendList(username:String, completionHandler:@escaping(Bool, FriendListModel, String)->()) {
+        
+        let url = API.UrlHost+API.UrlFriendList
+        let params = ["Username":username]
+        
+        self.fetchData(withPOST: url, parameter: params as [String : AnyObject], completionHandler: {(isSuccess, responseData, error) -> () in
+            
+            var frListModel = FriendListModel(fromDictionary: NSDictionary())
+            if isSuccess {
+                let jsonData = responseData  as! NSDictionary
+                frListModel = FriendListModel(fromDictionary: jsonData)
+                completionHandler(true, frListModel, "")
+            }
+            else {
+                completionHandler(false,frListModel, error)
+            }
+        })
+    }
+    
+    class func chatSend(sender:String, reciever:String, message:String, completionHandler:@escaping(Bool, String)->()) {
+        
+        let url = API.UrlHost+API.UrlChatSend
+        let params = ["Sender":sender,
+                      "Reciever":reciever,
+                      "Message":message,
+                      "DateAndTime":""]
+        
+        self.fetchData(withPOST: url, parameter: params as [String : AnyObject], completionHandler: {(isSuccess, responseData, error) -> () in
+            
+            if isSuccess {
+                let jsonData = responseData  as! [String:String]
+                guard let strResult = jsonData["Result"], strResult.lowercased() == "Message sent.".lowercased() else{
+                    completionHandler(false, error)
+                    return
+                }
+                
+                completionHandler(true, strResult)
+            }
+            else {
+                completionHandler(false, error)
+            }
+        })
+    }
+    
+    class func chatGet(sender:String, reciever:String, completionHandler:@escaping(Bool, ChatGetMessageModel, String)->()) {
+        
+        let url = API.UrlHost+API.UrlChatGet
+        let params = ["Sender":sender,
+                      "Reciever":reciever,
+                      "DateAndTime":""]
+        
+        self.fetchData(withPOST: url, parameter: params as [String : AnyObject], completionHandler: {(isSuccess, responseData, error) -> () in
+            
+            var chatModel = ChatGetMessageModel(fromDictionary: NSDictionary())
+            if isSuccess {
+                let jsonData = responseData  as! NSDictionary
+                chatModel = ChatGetMessageModel(fromDictionary: jsonData)
+                completionHandler(true, chatModel, "")
+            }
+            else {
+                completionHandler(false,chatModel, error)
+            }
+        })
+    }
+    
     class func fetchData(withPOST url:String, parameter param:[String:AnyObject], completionHandler:@escaping (Bool, AnyObject, String)->()) {
         
         var header: HTTPHeaders = ["Content-Type":"application/json"]

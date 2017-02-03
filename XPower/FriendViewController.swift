@@ -14,7 +14,7 @@ class FriendViewController: UIViewController, UITableViewDataSource, UITableView
     @IBOutlet weak var segmentFriend: UISegmentedControl!
     @IBOutlet weak var tblFriend: UITableView!
     
-    let arrayFrendList = [AnyObject]()
+    var friendListModel: FriendListModel = FriendListModel(fromDictionary: NSDictionary())
     var friendReqModel: FriendRequestListModel = FriendRequestListModel(fromDictionary: NSDictionary())
     var al_sendReq:UIAlertController = UIAlertController()
     
@@ -22,12 +22,35 @@ class FriendViewController: UIViewController, UITableViewDataSource, UITableView
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        
+        let imagv = UIImageView(frame: self.view.bounds)
+        imagv.loadFromFile(photo: "addfriend")
+        self.view.addSubview(imagv)
+        self.view.sendSubview(toBack: imagv)
+        
         let barAddBtn: UIBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addFriend))
         self.navigationItem.rightBarButtonItem = barAddBtn
         
         self.segmentFriend.selectedSegmentIndex = 0;
-        loadFriendList()
-        loadFriendRequest()
+//        loadFriendList()
+//        loadFriendRequest()
+
+//        let operationqueue = OperationQueue()
+//        let op_list = BlockOperation{
+//            DispatchQueue.main.async {
+                self.loadFriendList()
+//            }
+//        }
+//        let op_req = BlockOperation{
+            let when = DispatchTime.now() + 1 // change 2 to desired number of seconds
+            DispatchQueue.main.asyncAfter(deadline: when) {
+                // Your code with delay
+                self.loadFriendRequest()
+            }
+//        }
+//        operationqueue.addOperations([op_list,op_req], waitUntilFinished: true)
+        
+        
         self.tblFriend.tableFooterView = UIView()
     }
     
@@ -65,7 +88,20 @@ class FriendViewController: UIViewController, UITableViewDataSource, UITableView
     }
     
     func loadFriendList() {
-        self.tblFriend.reloadData();
+        let username = UserDefaults.standard.object(forKey: AppDefault.Username) as! String
+        
+        MBProgressHUD.showAdded(to: self.view, animated: true)
+        WebServiceManager.friendList(username: username, completionHandler: { (isSuccess, responseData, message) in
+            
+            DispatchQueue.main.async {
+                if isSuccess {
+                    self.friendListModel = responseData;
+                    self.tblFriend.reloadData();
+                }
+                
+                MBProgressHUD.hide(for: self.view, animated: true)
+            }
+        })
     }
     
     func loadFriendRequest() {
@@ -100,7 +136,7 @@ class FriendViewController: UIViewController, UITableViewDataSource, UITableView
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
         if segmentFriend.selectedSegmentIndex == 0 {
-            return self.arrayFrendList.count
+            return self.friendListModel.friends.count
         }
         else {
             return self.friendReqModel.requests.count
@@ -112,7 +148,7 @@ class FriendViewController: UIViewController, UITableViewDataSource, UITableView
         if segmentFriend.selectedSegmentIndex == 0 {
             // List
             let cell = tableView.dequeueReusableCell(withIdentifier: "FriendList", for: indexPath)
-            cell.textLabel?.text = "Static"
+            cell.textLabel?.text = self.friendListModel.friends[indexPath.row].username
             return cell
 
         }
@@ -124,6 +160,15 @@ class FriendViewController: UIViewController, UITableViewDataSource, UITableView
             cell.lblName.text = self.friendReqModel.requests[indexPath.row].username
             return cell
 
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        if segmentFriend.selectedSegmentIndex == 0 {
+            let chatVC: ChatViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "ChatViewController") as! ChatViewController
+            chatVC.receiver = self.friendListModel.friends[indexPath.row].username
+            self.navigationController?.pushViewController(chatVC, animated: true)
         }
     }
     

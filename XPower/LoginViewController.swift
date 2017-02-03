@@ -20,6 +20,19 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         
+        let imagv = UIImageView(frame: self.view.bounds)
+        imagv.loadFromFile(photo: "Tree")
+        self.view.addSubview(imagv)
+        self.view.sendSubview(toBack: imagv)
+        
+//        let blurEffect = UIBlurEffect(style: UIBlurEffectStyle.light)
+//        let blurEffectView = UIVisualEffectView(effect: blurEffect)
+//        blurEffectView.frame = view.bounds
+//        blurEffectView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+//        imageView.addSubview(blurEffectView)
+        
+        
+        
         let keychain = KeychainWrapper()
         let username = keychain.myObject(forKey: kSecAttrAccount) as? String
         if let user = username, user.characters.count > 0{
@@ -34,6 +47,11 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.navigationController?.isNavigationBarHidden  = true
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        self.navigationController?.isNavigationBarHidden = false
     }
     
     override func didReceiveMemoryWarning() {
