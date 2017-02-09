@@ -37,13 +37,16 @@ class LeftMenuTableViewController: UITableViewController {
     // MARK: - Table view data source
 
     override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 108
+        return 150
     }
     
     override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let headerView: LeftMenuHeaderView = tableView.dequeueReusableCell(withIdentifier: "LeftMenuHeaderView") as! LeftMenuHeaderView
         let username = UserDefaults.standard.object(forKey: AppDefault.Username) as? String
         headerView.lblUsername.text = username
+        
+        let docPath = CommonViewController.getDocumentsDirectory().appendingPathComponent("\(username!).png")
+        headerView.imgvAvatar.image = UIImage(contentsOfFile: docPath.path)
         
         return headerView
         /*

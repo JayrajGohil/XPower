@@ -9,7 +9,7 @@
 import UIKit
 import MBProgressHUD
 
-class SignUpViewController: UIViewController {
+class SignUpViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
 
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var imgvBackground: UIImageView!
@@ -48,7 +48,33 @@ class SignUpViewController: UIViewController {
     }
     
     @IBAction func tapAvatar(_ sender: UITapGestureRecognizer) {
+        // UIImagePickerController is a view controller that lets a user pick media from their photo library.
+        let imagePickerController = UIImagePickerController()
         
+        // Only allow photos to be picked, not taken.
+        imagePickerController.sourceType = .photoLibrary
+        
+        // Make sure ViewController is notified when the user picks an image.
+        imagePickerController.delegate = self
+        
+        present(imagePickerController, animated: true, completion: nil)
+    }
+    
+    // MARK: UIImagePickerControllerDelegate
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+        // Dismiss the picker if the user canceled.
+        dismiss(animated: true, completion: nil)
+    }
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
+        // The info dictionary contains multiple representations of the image, and this uses the original.
+        let selectedImage = info[UIImagePickerControllerOriginalImage] as! UIImage
+        
+        // Set photoImageView to display the selected image.
+        self.imgAvatar.image = selectedImage
+        
+        // Dismiss the picker.
+        dismiss(animated: true, completion: nil)
     }
     
     @IBAction func pressSelectSchoolBtn(_ sender: Any) {
@@ -77,6 +103,10 @@ class SignUpViewController: UIViewController {
             self.showAlert("XPower", message: "Confirm password does not match with password")
             return
         }
+        else if self.btnSchool.titleLabel?.text == "Select School"{
+            self.showAlert("XPower", message: "Please select school")
+            return
+        }
         
         let strEmail = "\(txtEmail.text! + (txtEmailHost.text)!)"
         let strSchoolName = (btnSchool.titleLabel?.text == School.HaverfordName) ? School.HaverfordName : School.Param_AgnesIrwinSchool.lowercased()
@@ -95,13 +125,18 @@ class SignUpViewController: UIViewController {
                     keyWrapper.mySetObject(self.txtUsername.text, forKey: kSecAttrAccount)
                     keyWrapper.writeToKeychain()
                     
-                    UserDefaults.standard.set(self.txtPassword.text, forKey: AppDefault.Username)
+                    UserDefaults.standard.set(self.txtUsername.text, forKey: AppDefault.Username)
                     UserDefaults.standard.set(strSchoolName, forKey: AppDefault.SchoolName)
                     
                     // check if keep me login on then store in userdefaults
                     UserDefaults.standard.set(false, forKey: AppDefault.KeepLogIn)
                     UserDefaults.standard.synchronize()
                     
+                    // store avatar
+                    if let data = UIImagePNGRepresentation(self.imgAvatar.image!) {
+                        let filename = CommonViewController.getDocumentsDirectory().appendingPathComponent("\(self.txtUsername.text!).png")
+                        try? data.write(to: filename)
+                    }
                     // Load Home view
                     CommonViewController.loadHomeView()
                 }

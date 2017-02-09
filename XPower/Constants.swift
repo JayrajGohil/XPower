@@ -14,6 +14,7 @@ struct AppDefault {
     static let KeepLogIn = "keepLogIn"
     static let Username = "Username"
     static let SchoolName = "SchoolName"
+    static let TouchID = "IsTouchEnable"
 }
 
 struct Menu {
@@ -30,14 +31,18 @@ struct API {
     static let UrlLogin = "/UserService.svc/userauthentication"
     static let UrlForgotPassword = "/UserService.svc/resetpassword"
     static let UrlSignup = "/UserService.svc/CreateUserAccount"
+    static let UrlChangePassword = "/UserService.svc/changepassword"
+    static let UrlTouchID = "/UserService.svc/toggletouchid"
     
     static let UrlDailyPoint = "/PointService.svc/dailypoints"
     static let UrlTotalSchoolPoint = "/PointService.svc/totalschoolpoints"
     static let UrlPointList = "/PointService.svc/pointslistarray"
     static let UrlPointTable = "/PointService.svc/pointstable"
-    static let UrlPointFavorite = "/PointService.svc/getfavorites"
+    static let UrlPointFavoriteGet = "/PointService.svc/getfavoritetasks"
+    static let UrlPointFavoriteSet = "/PointService.svc/setfavoritetask"
     static let UrlPointRecentDeed = "/PointService.svc/getrecentdeeds"
     static let UrlPointAddDeed = "/PointService.svc/adddeeds"
+    static let UrlProgress = "/PointService.svc/getuserprogress"
     
     static let UrlFriendRequestList = "/UserService.svc/getfriendrequests"
     static let UrlFriendAdd = "/UserService.svc/addfriendrequest"

@@ -13,7 +13,7 @@ class FavoriteViewController: UIViewController, UITableViewDelegate, UITableView
 
     @IBOutlet weak var tblPoint: UITableView!
     
-    var arrayFav = [FavoriteModel]()
+    var arrayFav = [TasksList]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -35,11 +35,11 @@ class FavoriteViewController: UIViewController, UITableViewDelegate, UITableView
         let username = UserDefaults.standard.object(forKey: AppDefault.Username) as! String
         
         MBProgressHUD.showAdded(to: self.view, animated: true)
-        WebServiceManager.pointFavorite(username: username, completionHandler:{ (isSuccess, responseData, message) in
+        WebServiceManager.pointFavoriteGet(username: username, completionHandler:{ (isSuccess, responseData, message) in
             
             DispatchQueue.main.async {
                 
-                self.arrayFav = responseData;
+                self.arrayFav = responseData.tasksList;
                 self.tblPoint.reloadData();
                 MBProgressHUD.hide(for: self.view, animated: true)
             }
@@ -59,13 +59,15 @@ class FavoriteViewController: UIViewController, UITableViewDelegate, UITableView
         let cell : PointTableViewCell = tableView.dequeueReusableCell(withIdentifier: "PointTableViewCell") as! PointTableViewCell
         cell.delegate = self;
         cell.tag = indexPath.row
-        cell.lblTitle.text = arrayFav[indexPath.row].favorite
+        cell.lblTitle.text = arrayFav[indexPath.row].task
+        cell.isFavorite = true
+        cell.btnFavorite.setImage(UIImage(named: "favorites"), for: .normal)
         return cell
     }
     
     func pointDeedAdded(at: Int) {
         let username = UserDefaults.standard.object(forKey: AppDefault.Username) as! String
-        let deedSelected = arrayFav[at].favorite
+        let deedSelected = arrayFav[at].task
         let dateToday = Date()
         
         MBProgressHUD.showAdded(to: self.view, animated: true)
@@ -82,6 +84,51 @@ class FavoriteViewController: UIViewController, UITableViewDelegate, UITableView
                     // your code with delay
                     alert.dismiss(animated: true, completion: nil)
                 }
+            }
+        })
+    }
+    
+    func favoriteAdded(at: Int, isFav: Bool) {
+        let username = UserDefaults.standard.object(forKey: AppDefault.Username) as! String
+        let cell: PointTableViewCell = self.tblPoint.cellForRow(at: IndexPath(row: at, section: 0)) as! PointTableViewCell
+        let task = cell.lblTitle.text
+        
+        var isFavorite = isFav
+        if isFavorite  {
+            isFavorite = false
+        }else{
+            isFavorite = true
+        }
+        
+        MBProgressHUD.showAdded(to: self.view, animated: true)
+        WebServiceManager.pointFavoriteSet(username: username, isFavorite: isFavorite, task: task!, completionHandler: {(isSuccess, message) -> () in
+            DispatchQueue.main.async {
+                
+                MBProgressHUD.hide(for: self.view, animated: true)
+                let alert = UIAlertController(title: "XPower", message: message, preferredStyle: .alert)
+                self.present(alert, animated: true, completion: nil)
+                
+                // change to desired number of seconds (in this case 5 seconds)
+                let when = DispatchTime.now() + 2
+                DispatchQueue.main.asyncAfter(deadline: when){
+                    // your code with delay
+                    alert.dismiss(animated: true, completion: nil)
+                    self.favoriteGet()
+                }
+            }
+        })
+    }
+    
+    func favoriteGet() {
+        let username = UserDefaults.standard.object(forKey: AppDefault.Username) as! String
+        
+        MBProgressHUD.showAdded(to: self.view, animated: true)
+        WebServiceManager.pointFavoriteGet(username: username, completionHandler:{ (isSuccess, responseData, message) in
+            
+            DispatchQueue.main.async {
+                self.arrayFav = responseData.tasksList;
+                self.tblPoint.reloadData()
+                MBProgressHUD.hide(for: self.view, animated: true)
             }
         })
     }

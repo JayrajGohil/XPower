@@ -8,6 +8,7 @@
 
 import UIKit
 import MBProgressHUD
+import LocalAuthentication
 
 class LoginViewController: UIViewController, UITextFieldDelegate {
 
@@ -38,8 +39,37 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         if let user = username, user.characters.count > 0{
             let isKeepLogIn = UserDefaults.standard.bool(forKey: AppDefault.KeepLogIn)
             if isKeepLogIn {
-                // Load Home view
-                CommonViewController.loadHomeView()
+                let touch = UserDefaults.standard.bool(forKey: AppDefault.TouchID)
+                if  touch {
+                    authenticateUser()
+                }
+                else {
+                    // Load Home view
+                    CommonViewController.loadHomeView()
+                }
+            }
+        }
+    }
+    
+    func authenticateUser() {
+        let context = LAContext()
+        var error: NSError?
+        
+        if context.canEvaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, error: &error) {
+            let reason = "Identify yourself!"
+            
+            context.evaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, localizedReason: reason) {
+                [unowned self] success, authenticationError in
+                
+                DispatchQueue.main.async {
+                    if success {
+                        CommonViewController.loadHomeView()
+                    } else {
+                        let ac = UIAlertController(title: "Authentication failed", message: "Sorry!", preferredStyle: .alert)
+                        ac.addAction(UIAlertAction(title: "OK", style: .default))
+                        self.present(ac, animated: true)
+                    }
+                }
             }
         }
     }
@@ -72,7 +102,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
                     
                     // Store password in Keychain
                     let keyWrapper = KeychainWrapper()
-                    keyWrapper.mySetObject(dictData.password, forKey: kSecValueData)
+                    keyWrapper.mySetObject(self.txtPassword.text, forKey: kSecValueData)
                     keyWrapper.mySetObject(dictData.username, forKey: kSecAttrAccount)
                     keyWrapper.writeToKeychain()
                     

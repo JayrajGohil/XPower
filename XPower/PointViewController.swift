@@ -18,6 +18,7 @@ class PointViewController: UIViewController, UITableViewDelegate, UITableViewDat
     
     var arrayPoint = [PointTable]()
     var arrayRecent = [RecentDeedModel]()
+    var arrayFav = [TasksList]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -35,10 +36,13 @@ class PointViewController: UIViewController, UITableViewDelegate, UITableViewDat
         self.segmentPoints.selectedSegmentIndex = 0;
         self.constraint_btnHeight.constant = 0;
         self.btnDate.isHidden = true
-        
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         loadPoints()
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -65,10 +69,9 @@ class PointViewController: UIViewController, UITableViewDelegate, UITableViewDat
         WebServiceManager.pointListTable { (isSuccess, responseData, message) in
             
             DispatchQueue.main.async {
-                
-                self.arrayPoint = responseData;
-                self.tblPoint.reloadData();
                 MBProgressHUD.hide(for: self.view, animated: true)
+                self.arrayPoint = responseData;
+                self.favoriteGet()
             }
         }
     }
@@ -101,15 +104,27 @@ class PointViewController: UIViewController, UITableViewDelegate, UITableViewDat
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell : PointTableViewCell = tableView.dequeueReusableCell(withIdentifier: "PointTableViewCell") as! PointTableViewCell
-        
+
         if segmentPoints.selectedSegmentIndex == 0 {
             cell.delegate = self;
             cell.tag = indexPath.row
             cell.lblTitle.text = arrayPoint[indexPath.row].descriptionField
+            
         }
         else {
             
             cell.lblTitle.text = arrayRecent[indexPath.row].deed
+        }
+        
+        let ff = NSPredicate(format: "%K = %@", "task", cell.lblTitle.text!)
+        let abc = (self.arrayFav as NSArray).filtered(using: ff)
+        if abc.count > 0 {
+            cell.btnFavorite.setImage(UIImage(named: "favorites"), for: .normal)
+            cell.isFavorite = true
+        }
+        else {
+            cell.btnFavorite.setImage(UIImage(named: "NoFavorite"), for: .normal)
+            cell.isFavorite = false
         }
         
         return cell
@@ -134,6 +149,51 @@ class PointViewController: UIViewController, UITableViewDelegate, UITableViewDat
                     // your code with delay
                     alert.dismiss(animated: true, completion: nil)
                 }
+            }
+        })
+    }
+    
+    func favoriteAdded(at: Int, isFav: Bool) {
+        let username = UserDefaults.standard.object(forKey: AppDefault.Username) as! String
+        let cell: PointTableViewCell = self.tblPoint.cellForRow(at: IndexPath(row: at, section: 0)) as! PointTableViewCell
+        let task = cell.lblTitle.text
+        
+        var isFavorite = isFav
+        if isFavorite  {
+            isFavorite = false
+        }else{
+            isFavorite = true
+        }
+        
+        MBProgressHUD.showAdded(to: self.view, animated: true)
+        WebServiceManager.pointFavoriteSet(username: username, isFavorite: isFavorite, task: task!, completionHandler: {(isSuccess, message) -> () in
+            DispatchQueue.main.async {
+                
+                MBProgressHUD.hide(for: self.view, animated: true)
+                let alert = UIAlertController(title: "XPower", message: message, preferredStyle: .alert)
+                self.present(alert, animated: true, completion: nil)
+                
+                // change to desired number of seconds (in this case 5 seconds)
+                let when = DispatchTime.now() + 2
+                DispatchQueue.main.asyncAfter(deadline: when){
+                    // your code with delay
+                    alert.dismiss(animated: true, completion: nil)
+                    self.favoriteGet()
+                }
+            }
+        })
+    }
+    
+    func favoriteGet() {
+        let username = UserDefaults.standard.object(forKey: AppDefault.Username) as! String
+        
+        MBProgressHUD.showAdded(to: self.view, animated: true)
+        WebServiceManager.pointFavoriteGet(username: username, completionHandler:{ (isSuccess, responseData, message) in
+            
+            DispatchQueue.main.async {
+                self.arrayFav = responseData.tasksList;
+                self.tblPoint.reloadData()
+                MBProgressHUD.hide(for: self.view, animated: true)
             }
         })
     }

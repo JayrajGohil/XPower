@@ -1,7 +1,7 @@
 //
-//	RootClass.swift
+//	TasksList.swift
 //
-//	Create by Software Merchant on 30/1/2017
+//	Create by Software Merchant on 6/2/2017
 //	Copyright © 2017 Software Merchant. All rights reserved.
 //	Model file Generated using: 
 //	Vin.Favara's JSONExportV https://github.com/vivi7/JSONExport 
@@ -11,23 +11,21 @@
 import Foundation
 
 
-class FavoriteModel : NSObject, NSCoding{
+class TasksList : NSObject, NSCoding{
 
-    
-	var favorite : String!
-
+	var task : String!
 
     public func encode(with aCoder: NSCoder) {
-        if favorite != nil{
-            aCoder.encode(favorite, forKey: "favorite")
+        if task != nil{
+            aCoder.encode(task, forKey: "Task")
         }
     }
-    
+
 	/**
 	 * Instantiate the instance using the passed dictionary values to set the properties values
 	 */
 	init(fromDictionary dictionary: NSDictionary){
-		favorite = dictionary["favorite"] as? String
+		task = dictionary["Task"] as? String
 	}
 
 	/**
@@ -36,8 +34,8 @@ class FavoriteModel : NSObject, NSCoding{
 	func toDictionary() -> NSDictionary
 	{
 		var dictionary = NSMutableDictionary()
-		if favorite != nil{
-			dictionary["favorite"] = favorite
+		if task != nil{
+			dictionary["Task"] = task
 		}
 		return dictionary
 	}
@@ -48,7 +46,7 @@ class FavoriteModel : NSObject, NSCoding{
     */
     @objc required init(coder aDecoder: NSCoder)
 	{
-         favorite = aDecoder.decodeObject(forKey: "favorite") as? String
+         task = aDecoder.decodeObject(forKey: "Task") as? String
 
 	}
 
@@ -58,8 +56,8 @@ class FavoriteModel : NSObject, NSCoding{
     */
     @objc func encodeWithCoder(aCoder: NSCoder)
 	{
-		if favorite != nil{
-			aCoder.encode(favorite, forKey: "favorite")
+		if task != nil{
+			aCoder.encode(task, forKey: "Task")
 		}
 
 	}

@@ -106,8 +106,9 @@ class FriendViewController: UIViewController, UITableViewDataSource, UITableView
     
     func loadFriendRequest() {
         let username = UserDefaults.standard.object(forKey: AppDefault.Username) as! String
-        
-        MBProgressHUD.showAdded(to: self.view, animated: true)
+       
+        let friendHud = MBProgressHUD(for: self.view)
+        friendHud?.show(animated: true)
         WebServiceManager.friendRequestList(username: username, completionHandler: { (isSuccess, responseData, message) in
             
             DispatchQueue.main.async {
@@ -120,8 +121,7 @@ class FriendViewController: UIViewController, UITableViewDataSource, UITableView
                     }
                     
                 }
-                
-                MBProgressHUD.hide(for: self.view, animated: true)
+                friendHud?.hide(animated: true)
             }
         })
     }

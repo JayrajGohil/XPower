@@ -10,6 +10,7 @@ import UIKit
 
 protocol PointTableCellDelegate {
     func pointDeedAdded(at: Int)
+    func favoriteAdded(at: Int, isFav: Bool)
 }
 
 class PointTableViewCell: UITableViewCell {
@@ -17,6 +18,9 @@ class PointTableViewCell: UITableViewCell {
     @IBOutlet weak var btnAdd: UIButton!
     @IBOutlet weak var lblTitle: UILabel!
     @IBOutlet weak var constraint_BtnWidth: NSLayoutConstraint!
+    @IBOutlet weak var btnFavorite: UIButton!
+    @IBOutlet weak var constraint_BtnFav_width: NSLayoutConstraint!
+    var isFavorite: Bool!
     
     var delegate:PointTableCellDelegate?
     
@@ -33,5 +37,9 @@ class PointTableViewCell: UITableViewCell {
     
     @IBAction func pressAddBtn(_ sender: Any) {
         delegate?.pointDeedAdded(at: self.tag)
+    }
+    
+    @IBAction func pressFavBtn(_ sender: Any) {
+        delegate?.favoriteAdded(at: self.tag, isFav: isFavorite)
     }
 }

@@ -57,6 +57,7 @@ class RecentViewController: UIViewController,UITableViewDelegate, UITableViewDat
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell : PointTableViewCell = tableView.dequeueReusableCell(withIdentifier: "PointTableViewCell") as! PointTableViewCell
         cell.constraint_BtnWidth.constant = 0
+        cell.constraint_BtnFav_width.constant = 0;
         cell.lblTitle.text = arrayRecent[indexPath.row].deed
         return cell
     }

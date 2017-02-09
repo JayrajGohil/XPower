@@ -41,6 +41,11 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
 
         // Do any additional setup after loading the view.
         
+        let imagv = UIImageView(frame: self.view.bounds)
+        imagv.loadFromFile(photo: "addfriend")
+        self.view.addSubview(imagv)
+        self.view.sendSubview(toBack: imagv)
+        
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -53,9 +58,23 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
         NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillHide), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
         
         username = UserDefaults.standard.object(forKey: AppDefault.Username) as? String
+        MBProgressHUD.showAdded(to: self.view, animated: true)
+
         self.loadMessages()
         
-        timer = Timer(timeInterval: 3, target: self, selector: #selector(loadMessages), userInfo: nil, repeats: true)
+        
+        if #available(iOS 10.0, *) {
+            timer = Timer.scheduledTimer(withTimeInterval: 1.1,
+                                         repeats: true) {
+                                            timer in
+                                            //Put the code that be called by the timer here.
+                                            self.loadMessages()
+            }
+        } else {
+            // Fallback on earlier versions
+            
+            timer = Timer(timeInterval: 3, target: self, selector: #selector(loadMessages), userInfo: nil, repeats: true)
+        }
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -123,11 +142,9 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     func loadMessages() {
         
-        MBProgressHUD.showAdded(to: self.view, animated: true)
         WebServiceManager.chatGet(sender: self.username!, reciever: self.receiver!, date:"1970/01/01 00:00:00", completionHandler:{ (isSuccess, responseData, message) in
             
             DispatchQueue.main.async {
-                
                 MBProgressHUD.hide(for: self.view, animated: true)
                 if isSuccess {
                     self.chatMessageModel = responseData;

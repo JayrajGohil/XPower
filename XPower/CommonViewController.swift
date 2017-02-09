@@ -25,12 +25,19 @@ class CommonViewController: UIViewController {
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
         let mainStoryboard = UIStoryboard(name: "Main", bundle: nil)
         let homeController: LoginViewController = mainStoryboard.instantiateViewController(withIdentifier: "LoginViewController") as! LoginViewController
-        appDelegate.window?.rootViewController = homeController
+        let navigation = UINavigationController(rootViewController:homeController)
+        appDelegate.window?.rootViewController = navigation
     }
 
     class func loadHomeView() {
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
         appDelegate.window?.rootViewController = SVMenuOptionManager.sharedInstance.slidingPanel
+    }
+    
+    class func getDocumentsDirectory() -> URL {
+        let paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
+        let documentsDirectory = paths[0]
+        return documentsDirectory
     }
     /*
     // MARK: - Navigation
