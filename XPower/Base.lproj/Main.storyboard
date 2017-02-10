@@ -137,6 +137,7 @@
                             </view>
                         </subviews>
                         <color key="backgroundColor" red="0.89897605800000002" green="0.89897605800000002" blue="0.89897605800000002" alpha="1" colorSpace="calibratedRGB"/>
+                        <gestureRecognizers/>
                         <constraints>
                             <constraint firstItem="j4A-1N-UwT" firstAttribute="top" secondItem="DoW-Ul-fKT" secondAttribute="bottom" constant="8" id="2Zx-ef-W1e"/>
                             <constraint firstItem="j4A-1N-UwT" firstAttribute="width" secondItem="QOa-lk-IKG" secondAttribute="width" id="54B-41-Tq8"/>
@@ -162,6 +163,9 @@
                             <constraint firstItem="QOa-lk-IKG" firstAttribute="top" secondItem="sN9-Ja-Hjq" secondAttribute="bottom" constant="8" id="nRX-XQ-40Q"/>
                             <constraint firstItem="Psz-oR-8dF" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="wyq-Kr-uvn"/>
                         </constraints>
+                        <connections>
+                            <outletCollection property="gestureRecognizers" destination="S5y-ZK-nXs" appends="YES" id="zKR-xB-8uv"/>
+                        </connections>
                     </view>
                     <navigationItem key="navigationItem" id="CrT-KS-vrl"/>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" barStyle="black" translucent="NO" prompted="NO"/>
@@ -172,6 +176,11 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="S5y-ZK-nXs">
+                    <connections>
+                        <action selector="tapView:" destination="BYZ-38-t0r" id="OR1-Bm-beN"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="1280.8" y="151.57421289355324"/>
         </scene>
@@ -191,9 +200,10 @@
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="149"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="SLi-Qy-LBE">
+                                        <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="SLi-Qy-LBE">
                                             <rect key="frame" x="16" y="28" width="150" height="60"/>
                                             <color key="backgroundColor" red="0.89897605800000002" green="0.89897605800000002" blue="0.89897605800000002" alpha="1" colorSpace="calibratedRGB"/>
+                                            <gestureRecognizers/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="60" id="NUy-Sf-NoC"/>
                                             </constraints>
@@ -261,6 +271,7 @@
                     </tableView>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="WHh-Z5-7k6" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="0ac-Fp-CeU"/>
             </objects>
             <point key="canvasLocation" x="2032.8" y="151.57421289355324"/>
         </scene>
@@ -332,20 +343,8 @@
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                             <rect key="frame" x="0.0" y="0.0" width="100" height="100"/>
                                             <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qWP-GI-vC2">
-                                                    <rect key="frame" x="0.0" y="0.0" width="100" height="100"/>
-                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                </view>
-                                            </subviews>
                                         </view>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                        <constraints>
-                                            <constraint firstAttribute="trailing" secondItem="qWP-GI-vC2" secondAttribute="trailing" id="2hs-N8-Laa"/>
-                                            <constraint firstItem="qWP-GI-vC2" firstAttribute="top" secondItem="HF9-8L-xiO" secondAttribute="top" id="4ls-ed-Lub"/>
-                                            <constraint firstItem="qWP-GI-vC2" firstAttribute="leading" secondItem="HF9-8L-xiO" secondAttribute="leading" id="Hk9-VT-i5e"/>
-                                            <constraint firstAttribute="bottom" secondItem="qWP-GI-vC2" secondAttribute="bottom" id="poY-Kc-E1U"/>
-                                        </constraints>
                                         <size key="customSize" width="100" height="100"/>
                                     </collectionViewCell>
                                 </cells>
@@ -543,22 +542,24 @@
                         <rect key="frame" x="0.0" y="64" width="375" height="603"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="ued-ON-Iyd">
-                                <rect key="frame" x="67" y="0.0" width="241" height="29"/>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="ued-ON-Iyd">
+                                <rect key="frame" x="67" y="0.0" width="241" height="34"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="28" id="Fqb-F5-Eec"/>
+                                    <constraint firstAttribute="height" constant="33" id="Fqb-F5-Eec"/>
                                     <constraint firstAttribute="width" constant="241" id="u9o-G0-MSW"/>
                                 </constraints>
                                 <segments>
                                     <segment title="Add Points"/>
                                     <segment title="Daily Deeds"/>
                                 </segments>
+                                <color key="tintColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                 <connections>
                                     <action selector="segmentValueChange:" destination="8xr-IK-SIp" eventType="valueChanged" id="eR5-hi-Fdm"/>
                                 </connections>
                             </segmentedControl>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="60" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="2pR-L3-7VD">
-                                <rect key="frame" x="0.0" y="36" width="375" height="466"/>
+                                <rect key="frame" x="0.0" y="41" width="375" height="461"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <connections>
                                     <outlet property="dataSource" destination="8xr-IK-SIp" id="xxT-q1-de0"/>
@@ -634,7 +635,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Qis-v1-3gK">
-                                <rect key="frame" x="0.0" y="44" width="375" height="559"/>
+                                <rect key="frame" x="0.0" y="49" width="375" height="554"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="FriendList" textLabel="rBm-gw-1H8" style="IBUITableViewCellStyleDefault" id="SWO-NW-zSj">
@@ -721,16 +722,18 @@
                                     <outlet property="delegate" destination="k1y-wE-kJU" id="WW3-g6-vT5"/>
                                 </connections>
                             </tableView>
-                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="fz3-85-lei">
-                                <rect key="frame" x="71" y="8" width="232" height="29"/>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="fz3-85-lei">
+                                <rect key="frame" x="71" y="8" width="232" height="34"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="232" id="hRo-ca-iNu"/>
-                                    <constraint firstAttribute="height" constant="28" id="qbE-Vj-KuC"/>
+                                    <constraint firstAttribute="height" constant="33" id="qbE-Vj-KuC"/>
                                 </constraints>
                                 <segments>
                                     <segment title="List"/>
-                                    <segment title="Request (10)"/>
+                                    <segment title="Request (0)"/>
                                 </segments>
+                                <color key="tintColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                 <connections>
                                     <action selector="valueChangeFriend:" destination="k1y-wE-kJU" eventType="valueChanged" id="unw-bM-cia"/>
                                 </connections>
@@ -1125,12 +1128,16 @@
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pOp-is-n4N">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
                                 <subviews>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="y44-0A-6tW">
+                                    <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="y44-0A-6tW">
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
+                                        <gestureRecognizers/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="603" id="jh9-rk-C7m"/>
                                             <constraint firstAttribute="width" constant="375" id="qPH-pZ-kQ1"/>
                                         </constraints>
+                                        <connections>
+                                            <outletCollection property="gestureRecognizers" destination="VZC-iT-Dji" appends="YES" id="n8d-xL-cAy"/>
+                                        </connections>
                                     </imageView>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Username" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="vre-1e-owQ">
                                         <rect key="frame" x="16" y="158" width="343" height="30"/>
@@ -1273,6 +1280,11 @@
                     <connections>
                         <action selector="tapAvatar:" destination="DDo-5m-RX5" id="ItA-r7-hbr"/>
                         <outlet property="delegate" destination="DDo-5m-RX5" id="aMT-6R-coS"/>
+                    </connections>
+                </tapGestureRecognizer>
+                <tapGestureRecognizer id="VZC-iT-Dji">
+                    <connections>
+                        <action selector="tapView:" destination="DDo-5m-RX5" id="zk0-WE-zbw"/>
                     </connections>
                 </tapGestureRecognizer>
             </objects>

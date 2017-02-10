@@ -8,7 +8,7 @@
 
 import UIKit
 
-class LeftMenuTableViewController: UITableViewController {
+class LeftMenuTableViewController: UITableViewController, leftMenuHeaderDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
 
     var menuSelectionClosure: ((IndexPath, Bool)-> Void)!
     var arrayMenu = [Menu.Home, Menu.Points, Menu.Score, Menu.Friends, Menu.Settings, Menu.Logout]
@@ -42,6 +42,7 @@ class LeftMenuTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let headerView: LeftMenuHeaderView = tableView.dequeueReusableCell(withIdentifier: "LeftMenuHeaderView") as! LeftMenuHeaderView
+        headerView.delegate = self
         let username = UserDefaults.standard.object(forKey: AppDefault.Username) as? String
         headerView.lblUsername.text = username
         
@@ -85,6 +86,43 @@ class LeftMenuTableViewController: UITableViewController {
         self.menuSelectionClosure(indexPath, true)
     }
 
+    func changeAvatar() {
+        
+        // UIImagePickerController is a view controller that lets a user pick media from their photo library.
+        let imagePickerController = UIImagePickerController()
+        
+        // Only allow photos to be picked, not taken.
+        imagePickerController.sourceType = .photoLibrary
+        
+        // Make sure ViewController is notified when the user picks an image.
+        imagePickerController.delegate = self
+        
+        present(imagePickerController, animated: true, completion: nil)
+    }
+    
+    // MARK: UIImagePickerControllerDelegate
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+        // Dismiss the picker if the user canceled.
+        dismiss(animated: true, completion: nil)
+    }
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
+        // The info dictionary contains multiple representations of the image, and this uses the original.
+        let selectedImage = info[UIImagePickerControllerOriginalImage] as! UIImage
+        
+        // Set photoImageView to display the selected image.
+        // store avatar
+        if let data = UIImagePNGRepresentation(selectedImage) {
+            let username = UserDefaults.standard.object(forKey: AppDefault.Username) as? String
+            let filename = CommonViewController.getDocumentsDirectory().appendingPathComponent("\(username!).png")
+            try? data.write(to: filename)
+        }
+        
+        // Dismiss the picker.
+        dismiss(animated: true, completion: nil)
+        
+        self.tableView.reloadData()
+    }
     /*
     // Override to support conditional editing of the table view.
     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {

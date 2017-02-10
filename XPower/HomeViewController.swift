@@ -33,6 +33,9 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
+        progModel = ProgressModel(fromDictionary: NSDictionary())
+        self.collectionView.reloadData()
+
         MBProgressHUD.showAdded(to: self.view, animated: true)
         let username = UserDefaults.standard.object(forKey: AppDefault.Username) as! String
         let schoolname = UserDefaults.standard.object(forKey: AppDefault.SchoolName) as! String
@@ -169,7 +172,11 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
         default:
             v.animateProgressView(percentage: 0, month: "")
         }
-        
+        for subv in cell.contentView.subviews {
+            if subv is ProgressView {
+                subv.removeFromSuperview()
+            }
+        }
         cell.contentView.addSubview(v)
         return cell
     }

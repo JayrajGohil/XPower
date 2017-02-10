@@ -42,10 +42,16 @@ class SignUpViewController: UIViewController, UIImagePickerControllerDelegate, U
         super.viewWillDisappear(animated)
 //        self.navigationController?.isNavigationBarHidden  = true
     }
+    
+    @IBAction func tapView(_ sender: UITapGestureRecognizer) {
+        self.view.endEditing(true)
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    
     
     @IBAction func tapAvatar(_ sender: UITapGestureRecognizer) {
         // UIImagePickerController is a view controller that lets a user pick media from their photo library.
@@ -80,12 +86,12 @@ class SignUpViewController: UIViewController, UIImagePickerControllerDelegate, U
     @IBAction func pressSelectSchoolBtn(_ sender: Any) {
         let alertEmailHost = UIAlertController(title: AppDefault.AppName, message: AppDefault.SelectSchool, preferredStyle: .actionSheet)
         let actionHavord = UIAlertAction(title: School.HaverfordName, style: .default, handler: {(action) -> Void in
-            self.btnSchool.titleLabel?.text = School.HaverfordName
+            self.btnSchool.setTitle(School.HaverfordName, for: .normal)
             self.txtEmailHost.text = School.HaverfordEmail
             
         })
         let actionAgnes = UIAlertAction(title: School.AgnesIrwinName, style: .default, handler: {action in
-            self.btnSchool.titleLabel?.text = School.AgnesIrwinName
+            self.btnSchool.setTitle(School.AgnesIrwinName, for: .normal)
             self.txtEmailHost.text = School.AgnesIrwinEmail
         })
         alertEmailHost.addAction(actionHavord)

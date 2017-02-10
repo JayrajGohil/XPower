@@ -51,6 +51,10 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         }
     }
     
+    @IBAction func tapView(_ sender: UITapGestureRecognizer) {
+        self.view.endEditing(true)
+    }
+    
     func authenticateUser() {
         let context = LAContext()
         var error: NSError?

@@ -8,19 +8,34 @@
 
 import UIKit
 
+@objc protocol leftMenuHeaderDelegate: NSObjectProtocol {
+    @objc optional func changeAvatar()
+}
+
 class LeftMenuHeaderView: UITableViewCell {
 
     @IBOutlet weak var imgvAvatar: UIImageView!
     @IBOutlet weak var lblUsername: UILabel!
     
+    var delegate: leftMenuHeaderDelegate?
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
+        
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(tapAvatar(_:)))
+        self.imgvAvatar.addGestureRecognizer(tapGesture)
     }
     
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
         
         // Configure the view for the selected state
+    }
+    
+    @IBAction func tapAvatar(_ sender: UITapGestureRecognizer) {
+        if delegate != nil && delegate!.responds(to: #selector(leftMenuHeaderDelegate.changeAvatar)){
+            delegate?.changeAvatar!()
+        }
     }
 }
