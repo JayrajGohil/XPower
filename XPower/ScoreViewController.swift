@@ -20,7 +20,7 @@ class ScoreViewController: UIViewController {
         // Do any additional setup after loading the view.
         
         let imagv = UIImageView(frame: self.view.bounds)
-        imagv.loadFromFile(photo: "scoreboard")
+        imagv.loadFromFile(photo: "scoreboard-1")
         self.view.addSubview(imagv)
         self.view.sendSubview(toBack: imagv)
     }

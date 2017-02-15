@@ -37,6 +37,10 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
         self.collectionView.reloadData()
 
         MBProgressHUD.showAdded(to: self.view, animated: true)
+        
+        self.lblDailyPoints.text = "0"
+        self.lblTotalSchoolPoint.text = "0"
+        
         let username = UserDefaults.standard.object(forKey: AppDefault.Username) as! String
         let schoolname = UserDefaults.standard.object(forKey: AppDefault.SchoolName) as! String
 
@@ -130,6 +134,86 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
         // get a reference to our storyboard cell
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath as IndexPath) as! ProgressCollectionViewCell
         
+        var per = 0
+        var month = ""
+        var point = 0
+        
+        switch indexPath.row {
+        case 0:
+            point = (progModel?.jan)!
+            per = ((progModel?.jan)! * 100 / (progModel?.maxPoint)!)
+            month = "Jan"
+        case 1:
+            point = (progModel?.feb)!
+            per = ((progModel?.feb)! * 100 / (progModel?.maxPoint)!)
+            month = "Feb"
+        case 2:
+            point = (progModel?.mar)!
+            per = ((progModel?.mar)! * 100 / (progModel?.maxPoint)!)
+            month = "Mar"
+        case 3:
+            point = (progModel?.apr)!
+            per = ((progModel?.apr)! * 100 / (progModel?.maxPoint)!)
+            month = "Apr"
+        case 4:
+            point = (progModel?.may)!
+            per = ((progModel?.may)! * 100 / (progModel?.maxPoint)!)
+            month = "May"
+        case 5:
+            point = (progModel?.jun)!
+            per = ((progModel?.jun)! * 100 / (progModel?.maxPoint)!)
+            month = "Jun"
+        case 6:
+            point = (progModel?.jul)!
+            per = ((progModel?.jul)! * 100 / (progModel?.maxPoint)!)
+            month = "Jul"
+        case 7:
+            point = (progModel?.aug)!
+            per = ((progModel?.aug)! * 100 / (progModel?.maxPoint)!)
+            month = "Aug"
+        case 8:
+            point = (progModel?.sep)!
+            per = ((progModel?.sep)! * 100 / (progModel?.maxPoint)!)
+            month = "Sep"
+        case 9:
+            point = (progModel?.oct)!
+            per = ((progModel?.oct)! * 100 / (progModel?.maxPoint)!)
+            month = "Oct"
+        case 10:
+            point = (progModel?.nov)!
+            per = ((progModel?.nov)! * 100 / (progModel?.maxPoint)!)
+            month = "Nov"
+        case 11:
+            point = (progModel?.dec)!
+            per = ((progModel?.dec)! * 100 / (progModel?.maxPoint)!)
+            month = "Dec"
+        default: break
+        }
+        
+        if point < 20 {
+            cell.imgvProgress.image = UIImage(named: "Tree1")
+        }
+        else if  point >= 20 && point < 50 {
+            cell.imgvProgress.image = UIImage(named: "Tree3")
+        }
+        else if  point >= 50 && point < 100 {
+            cell.imgvProgress.image = UIImage(named: "Tree4")
+        }
+        else if  point >= 100 && point < 150 {
+            cell.imgvProgress.image = UIImage(named: "Tree5")
+        }
+        else {
+            cell.imgvProgress.image = UIImage(named: "Tree6")
+        }
+        
+        if per >= 100
+        {
+            per = 100
+        }
+        
+        cell.lblProgress.text = "\(month) - \(per)%"
+        
+        /*
         let v = ProgressView(frame: cell.contentView.bounds)
         
         switch indexPath.row {
@@ -178,6 +262,8 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
             }
         }
         cell.contentView.addSubview(v)
+ 
+ */
         return cell
     }
     

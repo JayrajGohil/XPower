@@ -10,4 +10,6 @@ import UIKit
 
 class ProgressCollectionViewCell: UICollectionViewCell {
     
+    @IBOutlet weak var imgvProgress: UIImageView!
+    @IBOutlet weak var lblProgress: UILabel!
 }

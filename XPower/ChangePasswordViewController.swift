@@ -18,6 +18,11 @@ class ChangePasswordViewController: UIViewController {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        
+        let imagv = UIImageView(frame: self.view.bounds)
+        imagv.loadFromFile(photo: "changePassword")
+        self.view.addSubview(imagv)
+        self.view.sendSubview(toBack: imagv)
     }
 
     override func didReceiveMemoryWarning() {

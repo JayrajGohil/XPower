@@ -98,7 +98,7 @@ class WebServiceManager: NSObject {
             if isSuccess {
                 let jsonData = responseData as! [String:Int]
                 
-                if let result = jsonData["error"], result == 0 {
+                if let result = jsonData["dailypoints"], result >= 0 {
                         completionHandler(true, "\(result)")
                 }
                 else {

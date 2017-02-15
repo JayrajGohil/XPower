@@ -19,7 +19,7 @@ class SettingViewController: UIViewController, UITableViewDelegate, UITableViewD
         // Do any additional setup after loading the view.
         
         let imagv = UIImageView(frame: self.view.bounds)
-        imagv.loadFromFile(photo: "newsettingbackground")
+        imagv.loadFromFile(photo: "settings")
         self.view.addSubview(imagv)
         self.view.sendSubview(toBack: imagv)
         

@@ -22,6 +22,10 @@ class LeftMenuTableViewController: UITableViewController, leftMenuHeaderDelegate
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
         
+        let imagv = UIImageView(frame: self.view.bounds)
+        imagv.loadFromFile(photo: "sidebar")
+        self.view.addSubview(imagv)
+        self.view.sendSubview(toBack: imagv)
     }
 
     override func viewWillAppear(_ animated: Bool) {
