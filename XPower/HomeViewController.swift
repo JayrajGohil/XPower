@@ -78,7 +78,6 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
                 DispatchQueue.main.async {
                     print("total point")
                     if isSuccess{
-                        MBProgressHUD.hide(for: self.view, animated: true)
                         self.progModel = responseData
                         if self.progModel?.error == 1 {
                             self.showAlert("XPower", message: "Invalid Username")
@@ -89,15 +88,53 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
                         else{
                             self.loadProgress()
                         }
-                        MBProgressHUD.hide(for: self.view, animated: true)
                     }
                 }
                 
             })
         }
+        
+        let op_FriendReq = BlockOperation{
+            let username = UserDefaults.standard.object(forKey: AppDefault.Username) as! String
+            WebServiceManager.friendRequestList(username: username, completionHandler: { (isSuccess, responseData, message) in
+                
+                DispatchQueue.main.async {
+                    
+                    MBProgressHUD.hide(for: self.view, animated: true)
+                    let delegate = AppDelegate.getDelegate()
+                    let isAppeared = delegate.isReqestAppear
+                    
+                    if (isSuccess && !isAppeared) {
+                        
+                        let vc:LeftMenuTableViewController = SVMenuOptionManager.sharedInstance.slidingPanel.leftPanel as! LeftMenuTableViewController
+                        
+                        if responseData.requests.count > 0{
+                            
+                            let application = UIApplication.shared
+                            application.applicationIconBadgeNumber = responseData.requests.count
+                            
+                            let strFrnd =  "\(Menu.Friends) (\(responseData.requests.count) new)"
+                            vc.arrayMenu[3] = strFrnd
+                            vc.tableView.reloadData()
+                            
+                            delegate.isReqestAppear = true
+                            
+                            self.showAlert(AppDefault.AppName, message: "You have \(responseData.requests.count) peding friend request.")
+                        }
+                        else{
+                            UIApplication.shared.applicationIconBadgeNumber = 0
+                            vc.arrayMenu[3] = Menu.Friends
+                            vc.tableView.reloadData()
+                        }
+                    }
+                }
+            })
+        }
+        
         op_totalSchoolPoint.addDependency(op_dailyPoint)
         op_ProgressPoint.addDependency(op_totalSchoolPoint)
-        queue.addOperations([op_dailyPoint, op_totalSchoolPoint, op_ProgressPoint], waitUntilFinished: false)
+        op_FriendReq.addDependency(op_ProgressPoint)
+        queue.addOperations([op_dailyPoint, op_totalSchoolPoint, op_ProgressPoint, op_FriendReq], waitUntilFinished: false)
         
     }
     

@@ -15,6 +15,7 @@ struct AppDefault {
     static let Username = "Username"
     static let SchoolName = "SchoolName"
     static let TouchID = "IsTouchEnable"
+    static let RequestAppear = "IsRequestAlertShown"
 }
 
 struct Menu {
@@ -70,4 +71,8 @@ struct School {
 
 struct SignUp {
     static let Success = "Created User Account for user"
+}
+
+struct ProgilePic {
+    static let width = 200.0
 }

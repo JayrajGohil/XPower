@@ -99,6 +99,8 @@ class SVMenuOptionManager: NSObject {
             keyWrapper.mySetObject("", forKey: kSecValueData)
             keyWrapper.mySetObject("", forKey: kSecAttrAccount)
             keyWrapper.writeToKeychain()
+            
+            CommonViewController.resetFriendRequest()
             CommonViewController.loadLoginVieww()
             break
         default:

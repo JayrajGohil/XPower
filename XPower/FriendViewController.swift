@@ -120,6 +120,23 @@ class FriendViewController: UIViewController, UITableViewDataSource, UITableView
                         self.tblFriend.reloadData();
                     }
                     
+                    let vc:LeftMenuTableViewController = SVMenuOptionManager.sharedInstance.slidingPanel.leftPanel as! LeftMenuTableViewController
+                    
+                    if self.friendReqModel.requests.count > 0{
+                        
+                        let application = UIApplication.shared
+                        application.applicationIconBadgeNumber = responseData.requests.count
+                        
+                        let strFrnd =  "\(Menu.Friends) (\(self.friendReqModel.requests.count) new)"
+                        vc.arrayMenu[3] = strFrnd
+                        vc.tableView.reloadData()
+                    }
+                    else{
+                        UIApplication.shared.applicationIconBadgeNumber = 0
+                        vc.arrayMenu[3] = Menu.Friends
+                        vc.tableView.reloadData()
+                    }
+                    
                 }
                 friendHud?.hide(animated: true)
             }

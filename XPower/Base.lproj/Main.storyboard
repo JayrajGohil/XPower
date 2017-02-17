@@ -4,6 +4,7 @@
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
+        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -194,22 +195,23 @@
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="LeftMenuHeaderView" rowHeight="150" id="VLi-2C-iPg" customClass="LeftMenuHeaderView" customModule="XPower" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="55.5" width="375" height="150"/>
+                                <rect key="frame" x="0.0" y="56" width="375" height="150"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="VLi-2C-iPg" id="jUI-kN-oUZ">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="149.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="149"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <imageView contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="SLi-Qy-LBE">
-                                            <rect key="frame" x="16" y="16" width="150" height="100"/>
+                                            <rect key="frame" x="41" y="16" width="100" height="100"/>
                                             <color key="backgroundColor" red="0.89897605800000002" green="0.89897605800000002" blue="0.89897605800000002" alpha="1" colorSpace="calibratedRGB"/>
                                             <gestureRecognizers/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="100" id="NUy-Sf-NoC"/>
+                                                <constraint firstAttribute="width" constant="100" id="YmF-qa-Pru"/>
                                             </constraints>
                                         </imageView>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Username" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Vf2-Cr-DFw">
-                                            <rect key="frame" x="16" y="124" width="150" height="15.5"/>
+                                            <rect key="frame" x="16" y="124" width="150" height="16"/>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="150" id="nGL-Qu-prl"/>
@@ -223,9 +225,8 @@
                                     <constraints>
                                         <constraint firstItem="Vf2-Cr-DFw" firstAttribute="top" secondItem="SLi-Qy-LBE" secondAttribute="bottom" constant="8" id="6zC-D3-azJ"/>
                                         <constraint firstAttribute="bottomMargin" secondItem="Vf2-Cr-DFw" secondAttribute="bottom" constant="2" id="7BT-8f-dE9"/>
-                                        <constraint firstItem="SLi-Qy-LBE" firstAttribute="leading" secondItem="jUI-kN-oUZ" secondAttribute="leadingMargin" constant="8" id="BgZ-vA-jAP"/>
+                                        <constraint firstItem="SLi-Qy-LBE" firstAttribute="centerX" secondItem="Vf2-Cr-DFw" secondAttribute="centerX" id="HSi-cz-pm4"/>
                                         <constraint firstItem="SLi-Qy-LBE" firstAttribute="top" secondItem="jUI-kN-oUZ" secondAttribute="topMargin" constant="8" id="eBM-mi-itP"/>
-                                        <constraint firstItem="SLi-Qy-LBE" firstAttribute="width" secondItem="Vf2-Cr-DFw" secondAttribute="width" id="p2v-sl-smU"/>
                                         <constraint firstItem="Vf2-Cr-DFw" firstAttribute="leading" secondItem="jUI-kN-oUZ" secondAttribute="leadingMargin" constant="8" id="tGn-2b-ARb"/>
                                     </constraints>
                                 </tableViewCellContentView>
@@ -236,7 +237,7 @@
                                 </connections>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="LeftMenuTableViewCell" id="dck-AD-wuv" customClass="LeftMenuTableViewCell" customModule="XPower" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="205.5" width="375" height="44"/>
+                                <rect key="frame" x="0.0" y="206" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="dck-AD-wuv" id="tLz-eu-NlW">
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="43"/>

@@ -39,6 +39,29 @@ class CommonViewController: UIViewController {
         let documentsDirectory = paths[0]
         return documentsDirectory
     }
+    
+    class func resetFriendRequest() {
+        
+        let delegate = AppDelegate.getDelegate()
+        delegate.isReqestAppear = false
+        
+        let vc:LeftMenuTableViewController = SVMenuOptionManager.sharedInstance.slidingPanel.leftPanel as! LeftMenuTableViewController
+        UIApplication.shared.applicationIconBadgeNumber = 0
+        vc.arrayMenu[3] = Menu.Friends
+        vc.tableView.reloadData()
+    }
+    
+    class func resizeImage(image: UIImage, newWidth: CGFloat) -> UIImage {
+        
+        let scale = newWidth / image.size.width
+        let newHeight = image.size.height * scale
+        UIGraphicsBeginImageContext(CGSize(width: newWidth, height: newHeight))
+        image.draw(in: CGRect(x: 0, y: 0, width: newWidth, height: newHeight))
+        let newImage = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        return newImage!
+    }
+    
     /*
     // MARK: - Navigation
 

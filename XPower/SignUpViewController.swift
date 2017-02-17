@@ -74,8 +74,8 @@ class SignUpViewController: UIViewController, UIImagePickerControllerDelegate, U
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
         // The info dictionary contains multiple representations of the image, and this uses the original.
-        let selectedImage = info[UIImagePickerControllerOriginalImage] as! UIImage
-        
+        var selectedImage = info[UIImagePickerControllerOriginalImage] as! UIImage
+        selectedImage = CommonViewController.resizeImage(image: selectedImage, newWidth: CGFloat(ProgilePic.width))
         // Set photoImageView to display the selected image.
         self.imgAvatar.image = selectedImage
         
@@ -124,6 +124,9 @@ class SignUpViewController: UIViewController, UIImagePickerControllerDelegate, U
                 MBProgressHUD.hide(for: self.view, animated: true)
                 
                 if isSuccess {
+                    
+                    // reset friend reqeust
+                    CommonViewController.resetFriendRequest()
                     
                     // Store password in Keychain
                     let keyWrapper = KeychainWrapper()

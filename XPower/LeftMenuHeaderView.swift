@@ -25,6 +25,11 @@ class LeftMenuHeaderView: UITableViewCell {
         
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(tapAvatar(_:)))
         self.imgvAvatar.addGestureRecognizer(tapGesture)
+        
+        self.imgvAvatar.layer.borderWidth = 2
+        self.imgvAvatar.layer.cornerRadius = self.imgvAvatar.frame.height / 2
+        self.imgvAvatar.layer.borderColor = UIColor.black.cgColor
+        self.imgvAvatar.clipsToBounds = true
     }
     
     override func setSelected(_ selected: Bool, animated: Bool) {

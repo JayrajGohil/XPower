@@ -26,7 +26,8 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         self.view.addSubview(imagv)
         self.view.sendSubview(toBack: imagv)
         
-//        let blurEffect = UIBlurEffect(style: UIBlurEffectStyle.light)
+
+        //        let blurEffect = UIBlurEffect(style: UIBlurEffectStyle.light)
 //        let blurEffectView = UIVisualEffectView(effect: blurEffect)
 //        blurEffectView.frame = view.bounds
 //        blurEffectView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
@@ -76,6 +77,9 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
                 }
             }
         }
+        else{
+            CommonViewController.loadHomeView()
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -103,6 +107,9 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
                 
                 MBProgressHUD.hide(for: self.view, animated: true)
                 if isSuccess {
+                    
+                    // reset friend request
+                    CommonViewController.resetFriendRequest()
                     
                     // Store password in Keychain
                     let keyWrapper = KeychainWrapper()

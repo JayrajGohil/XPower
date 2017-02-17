@@ -51,7 +51,8 @@ class LeftMenuTableViewController: UITableViewController, leftMenuHeaderDelegate
         headerView.lblUsername.text = username
         
         let docPath = CommonViewController.getDocumentsDirectory().appendingPathComponent("\(username!).png")
-        headerView.imgvAvatar.image = UIImage(contentsOfFile: docPath.path)
+        let image = UIImage(contentsOfFile: docPath.path);
+        headerView.imgvAvatar.image = image
         
         return headerView
         /*
@@ -82,6 +83,21 @@ class LeftMenuTableViewController: UITableViewController, leftMenuHeaderDelegate
         // Configure the cell...
 
         cell.lblTitle.text = arrayMenu[indexPath.row]
+        
+        if indexPath.row == 3 {
+            let myString = NSMutableAttributedString(string: arrayMenu[indexPath.row])
+            let array = arrayMenu[indexPath.row].components(separatedBy: " ")
+            if array.count > 1 {
+                var strReq: String = "\(array[1]) \(array[2])"
+                myString.addAttribute(NSForegroundColorAttributeName, value: UIColor.red , range: NSMakeRange(Menu.Friends.characters.count+2, strReq.characters.count-2))
+                myString.addAttribute(NSFontAttributeName, value: UIFont.boldSystemFont(ofSize: cell.lblTitle.font.pointSize), range: NSMakeRange(Menu.Friends.characters.count+2, strReq.characters.count-2))
+                
+                // set attributed text on a UILabel
+                cell.lblTitle.attributedText = myString
+            }
+            
+        }
+            
         return cell
     }
 
@@ -112,8 +128,8 @@ class LeftMenuTableViewController: UITableViewController, leftMenuHeaderDelegate
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
         // The info dictionary contains multiple representations of the image, and this uses the original.
-        let selectedImage = info[UIImagePickerControllerOriginalImage] as! UIImage
-        
+        var selectedImage = info[UIImagePickerControllerOriginalImage] as! UIImage
+        selectedImage = CommonViewController.resizeImage(image: selectedImage, newWidth: CGFloat(ProgilePic.width))
         // Set photoImageView to display the selected image.
         // store avatar
         if let data = UIImagePNGRepresentation(selectedImage) {
