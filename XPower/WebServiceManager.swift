@@ -111,6 +111,27 @@ class WebServiceManager: NSObject {
         })
     }
     
+    class func totalUserPoints(username:String, completionHandler:@escaping(Bool, String)->()) {
+        
+        let url = API.UrlHost+API.UrlTotalPoint
+        let params = ["Username":username]
+        
+        self.fetchData(withPOST: url, parameter: params as [String : AnyObject], completionHandler: {(isSuccess, responseData, error) -> () in
+            if isSuccess {
+                let jsonData = responseData as! [String:Int]
+                if let result = jsonData["totalpoints"] {
+                    completionHandler(true, "\(result)")
+                }
+                else {
+                    completionHandler(false, error)
+                }
+            }
+            else {
+                completionHandler(false, error)
+            }
+        })
+    }
+    
     class func totalSchoolPoints(schoolName:String, completionHandler:@escaping(Bool, String)->()) {
         
         let url = API.UrlHost+API.UrlTotalSchoolPoint

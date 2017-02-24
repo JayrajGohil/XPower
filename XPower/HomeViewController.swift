@@ -42,7 +42,6 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
         self.lblTotalSchoolPoint.text = "0"
         
         let username = UserDefaults.standard.object(forKey: AppDefault.Username) as! String
-        let schoolname = UserDefaults.standard.object(forKey: AppDefault.SchoolName) as! String
 
         let queue = OperationQueue()
         
@@ -59,8 +58,8 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
             })
         }
         
-        let op_totalSchoolPoint = BlockOperation{
-            WebServiceManager.totalSchoolPoints(schoolName: schoolname, completionHandler: { (isSuccess, message) in
+        let op_totalPoint = BlockOperation{
+            WebServiceManager.totalUserPoints(username: username, completionHandler: { (isSuccess, message) in
                 
                 DispatchQueue.main.async {
                     print("total point")
@@ -119,7 +118,7 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
                             
                             delegate.isReqestAppear = true
                             
-                            self.showAlert(AppDefault.AppName, message: "You have \(responseData.requests.count) peding friend request.")
+                            self.showAlert(AppDefault.AppName, message: "You have \(responseData.requests.count) pending friend request.")
                         }
                         else{
                             UIApplication.shared.applicationIconBadgeNumber = 0
@@ -131,10 +130,10 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
             })
         }
         
-        op_totalSchoolPoint.addDependency(op_dailyPoint)
-        op_ProgressPoint.addDependency(op_totalSchoolPoint)
+        op_totalPoint.addDependency(op_dailyPoint)
+        op_ProgressPoint.addDependency(op_totalPoint)
         op_FriendReq.addDependency(op_ProgressPoint)
-        queue.addOperations([op_dailyPoint, op_totalSchoolPoint, op_ProgressPoint, op_FriendReq], waitUntilFinished: false)
+        queue.addOperations([op_dailyPoint, op_totalPoint, op_ProgressPoint, op_FriendReq], waitUntilFinished: false)
         
     }
     
@@ -174,7 +173,7 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
         var per = 0
         var month = ""
         var point = 0
-        
+                
         switch indexPath.row {
         case 0:
             point = (progModel?.jan)!
@@ -227,16 +226,19 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
         default: break
         }
         
-        if point < 20 {
+        let intervalPoint = (progModel?.maxPoint)! / 5
+        
+        
+        if point < (intervalPoint * 1) {
             cell.imgvProgress.image = UIImage(named: "Tree1")
         }
-        else if  point >= 20 && point < 50 {
+        else if point < (intervalPoint * 2) {
             cell.imgvProgress.image = UIImage(named: "Tree3")
         }
-        else if  point >= 50 && point < 100 {
+        else if  point < (intervalPoint * 3) {
             cell.imgvProgress.image = UIImage(named: "Tree4")
         }
-        else if  point >= 100 && point < 150 {
+        else if  point < (intervalPoint * 4) {
             cell.imgvProgress.image = UIImage(named: "Tree5")
         }
         else {

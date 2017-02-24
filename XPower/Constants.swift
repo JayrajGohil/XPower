@@ -44,6 +44,7 @@ struct API {
     static let UrlPointRecentDeed = "/PointService.svc/getrecentdeeds"
     static let UrlPointAddDeed = "/PointService.svc/adddeeds"
     static let UrlProgress = "/PointService.svc/getuserprogress"
+    static let UrlTotalPoint = "/PointService.svc/totalpoints"
     
     static let UrlFriendRequestList = "/UserService.svc/getfriendrequests"
     static let UrlFriendAdd = "/UserService.svc/addfriendrequest"

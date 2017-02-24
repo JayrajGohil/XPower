@@ -202,16 +202,16 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <imageView contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="SLi-Qy-LBE">
-                                            <rect key="frame" x="41" y="16" width="100" height="100"/>
+                                            <rect key="frame" x="43" y="16" width="95" height="95"/>
                                             <color key="backgroundColor" red="0.89897605800000002" green="0.89897605800000002" blue="0.89897605800000002" alpha="1" colorSpace="calibratedRGB"/>
                                             <gestureRecognizers/>
                                             <constraints>
-                                                <constraint firstAttribute="height" constant="100" id="NUy-Sf-NoC"/>
-                                                <constraint firstAttribute="width" constant="100" id="YmF-qa-Pru"/>
+                                                <constraint firstAttribute="height" constant="95" id="NUy-Sf-NoC"/>
+                                                <constraint firstAttribute="width" constant="95" id="YmF-qa-Pru"/>
                                             </constraints>
                                         </imageView>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Username" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Vf2-Cr-DFw">
-                                            <rect key="frame" x="16" y="124" width="150" height="16"/>
+                                            <rect key="frame" x="16" y="116" width="150" height="24"/>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="150" id="nGL-Qu-prl"/>
@@ -223,7 +223,7 @@
                                     </subviews>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                     <constraints>
-                                        <constraint firstItem="Vf2-Cr-DFw" firstAttribute="top" secondItem="SLi-Qy-LBE" secondAttribute="bottom" constant="8" id="6zC-D3-azJ"/>
+                                        <constraint firstItem="Vf2-Cr-DFw" firstAttribute="top" secondItem="SLi-Qy-LBE" secondAttribute="bottom" constant="5" id="6zC-D3-azJ"/>
                                         <constraint firstAttribute="bottomMargin" secondItem="Vf2-Cr-DFw" secondAttribute="bottom" constant="2" id="7BT-8f-dE9"/>
                                         <constraint firstItem="SLi-Qy-LBE" firstAttribute="centerX" secondItem="Vf2-Cr-DFw" secondAttribute="centerX" id="HSi-cz-pm4"/>
                                         <constraint firstItem="SLi-Qy-LBE" firstAttribute="top" secondItem="jUI-kN-oUZ" secondAttribute="topMargin" constant="8" id="eBM-mi-itP"/>
